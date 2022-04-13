@@ -12,6 +12,12 @@ import {MatSidenavModule} from "@angular/material/sidenav";
 import { HomeComponent } from './components/home/home.component';
 import { MeasurePlanComponent } from './components/measure-plan/measure-plan.component';
 import { ToDoListComponent } from './components/to-do-list/to-do-list.component';
+import {MatListModule} from "@angular/material/list";
+import { SettingsComponent } from './components/settings/settings.component';
+import {MatTableModule} from "@angular/material/table";
+import {MatPaginatorModule} from "@angular/material/paginator";
+import {MatFormFieldModule} from "@angular/material/form-field";
+import {MatInputModule} from "@angular/material/input";
 
 @NgModule({
   declarations: [
@@ -19,7 +25,8 @@ import { ToDoListComponent } from './components/to-do-list/to-do-list.component'
     ToolbarComponent,
     HomeComponent,
     MeasurePlanComponent,
-    ToDoListComponent
+    ToDoListComponent,
+    SettingsComponent
   ],
   imports: [
     BrowserModule,
@@ -28,7 +35,12 @@ import { ToDoListComponent } from './components/to-do-list/to-do-list.component'
     MatToolbarModule,
     MatButtonModule,
     MatIconModule,
-    MatSidenavModule
+    MatSidenavModule,
+    MatListModule,
+    MatTableModule,
+    MatPaginatorModule,
+    MatFormFieldModule,
+    MatInputModule,
   ],
   providers: [],
   bootstrap: [AppComponent]
