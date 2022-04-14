@@ -18,6 +18,8 @@ import {MatTableModule} from "@angular/material/table";
 import {MatPaginatorModule} from "@angular/material/paginator";
 import {MatFormFieldModule} from "@angular/material/form-field";
 import {MatInputModule} from "@angular/material/input";
+import { DutyCheckComponent } from './components/duty-check/duty-check.component';
+import {MatCardModule} from "@angular/material/card";
 
 @NgModule({
   declarations: [
@@ -26,7 +28,8 @@ import {MatInputModule} from "@angular/material/input";
     HomeComponent,
     MeasurePlanComponent,
     ToDoListComponent,
-    SettingsComponent
+    SettingsComponent,
+    DutyCheckComponent
   ],
   imports: [
     BrowserModule,
@@ -41,6 +44,7 @@ import {MatInputModule} from "@angular/material/input";
     MatPaginatorModule,
     MatFormFieldModule,
     MatInputModule,
+    MatCardModule,
   ],
   providers: [],
   bootstrap: [AppComponent]

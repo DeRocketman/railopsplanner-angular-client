@@ -4,12 +4,14 @@ import {HomeComponent} from "./components/home/home.component";
 import {MeasurePlanComponent} from "./components/measure-plan/measure-plan.component";
 import {ToDoListComponent} from "./components/to-do-list/to-do-list.component";
 import {SettingsComponent} from "./components/settings/settings.component";
+import {DutyCheckComponent} from "./components/duty-check/duty-check.component";
 
 const routes: Routes = [
   { path: 'home', component: HomeComponent },
   { path: 'measure-plan', component: MeasurePlanComponent },
   { path: 'to-do-list', component: ToDoListComponent },
   { path: 'settings', component: SettingsComponent },
+  { path: 'duty-check', component: DutyCheckComponent },
   { path: '', redirectTo: 'home', pathMatch: 'full'}
 ];
 
