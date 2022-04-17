@@ -20,6 +20,8 @@ import {MatFormFieldModule} from "@angular/material/form-field";
 import {MatInputModule} from "@angular/material/input";
 import { DutyCheckComponent } from './components/duty-check/duty-check.component';
 import {MatCardModule} from "@angular/material/card";
+import { MeasureFormComponent } from './components/measure-form/measure-form.component';
+import {ReactiveFormsModule} from "@angular/forms";
 
 @NgModule({
   declarations: [
@@ -29,7 +31,8 @@ import {MatCardModule} from "@angular/material/card";
     MeasurePlanComponent,
     ToDoListComponent,
     SettingsComponent,
-    DutyCheckComponent
+    DutyCheckComponent,
+    MeasureFormComponent
   ],
   imports: [
     BrowserModule,
@@ -45,6 +48,7 @@ import {MatCardModule} from "@angular/material/card";
     MatFormFieldModule,
     MatInputModule,
     MatCardModule,
+    ReactiveFormsModule,
   ],
   providers: [],
   bootstrap: [AppComponent]
