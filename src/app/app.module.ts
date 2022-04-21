@@ -22,6 +22,8 @@ import { DutyCheckComponent } from './components/duty-check/duty-check.component
 import {MatCardModule} from "@angular/material/card";
 import { MeasureFormComponent } from './components/measure-form/measure-form.component';
 import {ReactiveFormsModule} from "@angular/forms";
+import { LoginComponent } from './components/login/login.component';
+import { NewScheduleComponent } from './components/new-schedule/new-schedule.component';
 
 @NgModule({
   declarations: [
@@ -32,7 +34,9 @@ import {ReactiveFormsModule} from "@angular/forms";
     ToDoListComponent,
     SettingsComponent,
     DutyCheckComponent,
-    MeasureFormComponent
+    MeasureFormComponent,
+    LoginComponent,
+    NewScheduleComponent
   ],
   imports: [
     BrowserModule,
