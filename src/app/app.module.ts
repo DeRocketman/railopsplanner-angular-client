@@ -24,6 +24,9 @@ import { MeasureFormComponent } from './components/measure-form/measure-form.com
 import {ReactiveFormsModule} from "@angular/forms";
 import { LoginComponent } from './components/login/login.component';
 import { NewScheduleComponent } from './components/new-schedule/new-schedule.component';
+import {MatSelectModule} from "@angular/material/select";
+import {MatDatepickerModule} from "@angular/material/datepicker";
+import {MatNativeDateModule} from "@angular/material/core";
 
 @NgModule({
   declarations: [
@@ -38,22 +41,26 @@ import { NewScheduleComponent } from './components/new-schedule/new-schedule.com
     LoginComponent,
     NewScheduleComponent
   ],
-  imports: [
-    BrowserModule,
-    AppRoutingModule,
-    BrowserAnimationsModule,
-    MatToolbarModule,
-    MatButtonModule,
-    MatIconModule,
-    MatSidenavModule,
-    MatListModule,
-    MatTableModule,
-    MatPaginatorModule,
-    MatFormFieldModule,
-    MatInputModule,
-    MatCardModule,
-    ReactiveFormsModule,
-  ],
+    imports: [
+        BrowserModule,
+        AppRoutingModule,
+        BrowserAnimationsModule,
+        MatToolbarModule,
+        MatButtonModule,
+        MatIconModule,
+        MatSidenavModule,
+        MatListModule,
+        MatTableModule,
+        MatPaginatorModule,
+        MatFormFieldModule,
+        MatInputModule,
+        MatCardModule,
+        ReactiveFormsModule,
+        MatSelectModule,
+        MatDatepickerModule,
+        MatNativeDateModule,
+
+    ],
   providers: [],
   bootstrap: [AppComponent]
 })

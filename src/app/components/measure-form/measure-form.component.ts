@@ -1,7 +1,12 @@
 import {Component, EventEmitter, Input, OnChanges, OnInit, Output, SimpleChanges} from '@angular/core';
-import {FormBuilder, FormGroup} from "@angular/forms";
+import {FormBuilder, FormControl, FormGroup} from "@angular/forms";
 import {Measure} from "../../shared/measure";
 import {MeasureExistsValidatorService} from "../../shared/measure-exists-validator.service";
+
+interface RailNetwork {
+  value: string;
+  viewValue: string;
+}
 
 @Component({
   selector: 'rop-measure-form',
@@ -10,6 +15,16 @@ import {MeasureExistsValidatorService} from "../../shared/measure-exists-validat
 })
 export class MeasureFormComponent implements OnInit, OnChanges{
   measureForm: FormGroup;
+  networks: RailNetwork[] = [
+    {value: 'Netz Mitte', viewValue: 'Netz Mitte'},
+    {value: 'Netz OstWest', viewValue: 'Netz Ost-West'},
+    {value: 'Netz Nord', viewValue: 'Netz Nord'}
+  ];
+
+  measureRange = new FormGroup({
+    start: new FormControl(),
+    end: new FormControl()
+  });
 
   @Input() measure?: Measure;
   @Input() set editing(isEditing: boolean) {
