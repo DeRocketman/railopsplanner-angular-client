@@ -1,4 +1,12 @@
 table {
   width: 100%;
-  align-content: center;
+  background-color: antiquewhite;
+}
+
+button {
+  margin: 5px;
+}
+
+mat-paginator {
+  background-color: green;
 }
