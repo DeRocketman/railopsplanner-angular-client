@@ -19,8 +19,6 @@ export interface ToDoListItem {
 
 }
 
-
-
 export interface MeasureReason {
   reason: string;
   vzgList: string[];
