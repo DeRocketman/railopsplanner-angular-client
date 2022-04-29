@@ -18,6 +18,13 @@ export interface RailNetwork {
   infrastructureList: Infrastructure[];
   rollingStockList: RollingStock[];
   timetableList: TimeTable[];
+  planningPeriods: PlanningPeriod[];
+}
+
+export interface PlanningPeriod {
+  name: string;
+  start: Date;
+  end: Date;
 }
 
 

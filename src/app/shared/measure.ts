@@ -1,9 +1,11 @@
+import {PlanningPeriod} from "./time-table-year";
+
 export interface Measure {
   id: number;
   name: string;
   start: Date;
   end: Date;
-  station: string;
+  stations: string;
   railNetwork: string;
   reasons: MeasureReason[];
   effects?: string;
@@ -12,22 +14,48 @@ export interface Measure {
   kigbauNumber?:string;
   trainFailures?: TrainFailure[];
   scheduleDeviations?: ScheduleDeviation[];
+  toDoListRow?: ToDoListRow;
+}
+
+export interface ToDoListRow {
+  railNetwork: string;
+  period: PlanningPeriod;
+  name: string;
+  start: Date;
+  end: Date;
+  stations: string;
+  receivingDate: Date;
+  assignedPlannerName: string;
+  agentName: string;
+  processingStatus: number;
+  toDoListItems?: ToDoListItem[];
 }
 
 export interface ToDoListItem {
-  measureRef: number;
+  group: string;
+  name: string;
+  deadline: Date;
+  closingDate?: Date;
+  testMark?: string;
+  metaData: ToDoListItemMetaData[];
+}
 
+export interface ToDoListItemMetaData {
+  milestoneItem: boolean;
+  testMarkNeeded: boolean;
+  relativeToStart: boolean;
+  global: boolean;
 }
 
 export interface MeasureReason {
   reason: string;
-  vzgList: string[];
-  startOperationControlPoint: string;
-  endOperationControlPoint: string;
-  operatingMode: string;
-  start: Date;
-  end: Date;
-  disturbed: boolean;
+  vzgList?: string[];
+  startOperationControlPoint?: string;
+  endOperationControlPoint?: string;
+  operatingMode?: string;
+  start?: Date;
+  end?: Date;
+  disturbed?: boolean;
 }
 
 export interface TrainFailure {
