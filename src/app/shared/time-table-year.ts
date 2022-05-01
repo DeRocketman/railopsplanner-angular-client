@@ -1,31 +1,18 @@
-import {Infrastructure} from "./infrastructure";
-import {RollingStock} from "./rolling-stock";
-import {TimeTable} from "./time-table";
-import {Measure, ToDoListItem} from "./measure";
+import {RailNetwork} from "./rail-network";
+import {PlanningPeriod} from "./planning-period";
 
 export interface TimeTableYear {
+  id: number;
   name: string;
   firstDate: Date;
   lastDate: Date;
-  railNetworks: RailNetwork[];
-  measureList: Measure[];
-  toDoList: ToDoListItem[];
+  railNetworks?: RailNetwork[];
+  planningPeriods?: PlanningPeriod[];
 }
 
-export interface RailNetwork {
-  name: string;
-  abbreviation: string;
-  infrastructureList: Infrastructure[];
-  rollingStockList: RollingStock[];
-  timetableList: TimeTable[];
-  planningPeriods: PlanningPeriod[];
-}
 
-export interface PlanningPeriod {
-  name: string;
-  start: Date;
-  end: Date;
-}
+
+
 
 
 

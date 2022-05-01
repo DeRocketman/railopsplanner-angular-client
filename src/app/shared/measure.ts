@@ -1,4 +1,6 @@
-import {PlanningPeriod} from "./time-table-year";
+
+import {RailNetwork} from "./rail-network";
+
 
 export interface Measure {
   id: number;
@@ -6,9 +8,9 @@ export interface Measure {
   start: Date;
   end: Date;
   stations: string;
-  railNetwork: string;
+  railNetwork: RailNetwork;
   reasons: MeasureReason[];
-  effects?: string;
+  effect?: string;
   passengerConcept?: string;
   lossKilometer?: number;
   kigbauNumber?:string;
@@ -18,8 +20,6 @@ export interface Measure {
 }
 
 export interface ToDoListRow {
-  railNetwork: string;
-  period: PlanningPeriod;
   name: string;
   start: Date;
   end: Date;

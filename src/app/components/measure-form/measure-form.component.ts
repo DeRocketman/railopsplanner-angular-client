@@ -1,7 +1,7 @@
 import {Component, EventEmitter, Input, OnChanges, OnInit, Output, SimpleChanges} from '@angular/core';
 import {FormBuilder, FormControl, FormGroup} from "@angular/forms";
 import {Measure} from "../../shared/measure";
-import {MeasureExistsValidatorService} from "../../shared/measure-exists-validator.service";
+import {MeasureExistsValidatorService} from "../../services/measure-exists-validator.service";
 
 interface RailNetwork {
   value: string;
