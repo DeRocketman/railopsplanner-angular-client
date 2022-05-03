@@ -1,20 +1,20 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { NewScheduleComponent } from './new-schedule.component';
+import { TimeTableYearComponent } from './time-table-year.component';
 
-describe('NewScheduleComponent', () => {
-  let component: NewScheduleComponent;
-  let fixture: ComponentFixture<NewScheduleComponent>;
+describe('TimeTableYearComponent', () => {
+  let component: TimeTableYearComponent;
+  let fixture: ComponentFixture<TimeTableYearComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ NewScheduleComponent ]
+      declarations: [ TimeTableYearComponent ]
     })
     .compileComponents();
   });
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(NewScheduleComponent);
+    fixture = TestBed.createComponent(TimeTableYearComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

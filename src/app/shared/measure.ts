@@ -1,6 +1,5 @@
-
-import {RailNetwork} from "./rail-network";
-
+import {Agent} from "./agent";
+import {User} from "./user";
 
 export interface Measure {
   id: number;
@@ -8,7 +7,6 @@ export interface Measure {
   start: Date;
   end: Date;
   stations: string;
-  railNetwork: RailNetwork;
   reasons: MeasureReason[];
   effect?: string;
   passengerConcept?: string;
@@ -16,40 +14,15 @@ export interface Measure {
   kigbauNumber?:string;
   trainFailures?: TrainFailure[];
   scheduleDeviations?: ScheduleDeviation[];
-  toDoListRow?: ToDoListRow;
-}
-
-export interface ToDoListRow {
-  name: string;
-  start: Date;
-  end: Date;
-  stations: string;
-  receivingDate: Date;
-  assignedPlannerName: string;
-  agentName: string;
-  processingStatus: number;
-  toDoListItems?: ToDoListItem[];
-}
-
-export interface ToDoListItem {
-  group: string;
-  name: string;
-  deadline: Date;
-  closingDate?: Date;
-  testMark?: string;
-  metaData: ToDoListItemMetaData[];
-}
-
-export interface ToDoListItemMetaData {
-  milestoneItem: boolean;
-  testMarkNeeded: boolean;
-  relativeToStart: boolean;
-  global: boolean;
+  agents?: Agent[];
+  responseDate?: Date;
+  measureKind?: string;
+  clerks?: User[]
 }
 
 export interface MeasureReason {
+  id: number;
   reason: string;
-  vzgList?: string[];
   startOperationControlPoint?: string;
   endOperationControlPoint?: string;
   operatingMode?: string;
@@ -59,6 +32,7 @@ export interface MeasureReason {
 }
 
 export interface TrainFailure {
+  id: number;
   trafficDay: Date;
   trainNumber: string;
   trainType: string;

@@ -7,7 +7,6 @@ export interface TimeTableYear {
   firstDate: Date;
   lastDate: Date;
   railNetworks?: RailNetwork[];
-  planningPeriods?: PlanningPeriod[];
 }
 
 

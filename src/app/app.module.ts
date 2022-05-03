@@ -27,6 +27,7 @@ import { NewScheduleComponent } from './components/new-schedule/new-schedule.com
 import {MatSelectModule} from "@angular/material/select";
 import {MatDatepickerModule} from "@angular/material/datepicker";
 import {MatNativeDateModule} from "@angular/material/core";
+import { TimeTableYearComponent } from './components/time-table-year/time-table-year.component';
 
 @NgModule({
   declarations: [
@@ -39,7 +40,8 @@ import {MatNativeDateModule} from "@angular/material/core";
     DutyCheckComponent,
     MeasureFormComponent,
     LoginComponent,
-    NewScheduleComponent
+    NewScheduleComponent,
+    TimeTableYearComponent
   ],
     imports: [
         BrowserModule,
