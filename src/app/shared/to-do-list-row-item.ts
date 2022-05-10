@@ -8,8 +8,8 @@ export interface ToDoListRowItem {
 }
 
 export interface ToDoListItemMetaData {
-  milestoneItem: boolean;
-  testMarkNeeded: boolean;
-  relativeToStart: boolean;
-  global: boolean;
+  isMilestoneItem: boolean;
+  isTestMarkNeeded: boolean;
+  isRelativeToStart: boolean;
+  isGlobal: boolean;
 }
