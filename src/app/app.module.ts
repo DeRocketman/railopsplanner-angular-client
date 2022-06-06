@@ -5,7 +5,6 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import {MatToolbarModule} from "@angular/material/toolbar";
-import { ToolbarComponent } from './components/toolbar/toolbar.component';
 import {MatButtonModule} from "@angular/material/button";
 import {MatIconModule} from "@angular/material/icon";
 import {MatSidenavModule} from "@angular/material/sidenav";
@@ -23,7 +22,6 @@ import {MatCardModule} from "@angular/material/card";
 import { MeasureFormComponent } from './components/measure-form/measure-form.component';
 import {ReactiveFormsModule} from "@angular/forms";
 import { LoginComponent } from './components/login/login.component';
-import { NewScheduleComponent } from './components/new-schedule/new-schedule.component';
 import {MatSelectModule} from "@angular/material/select";
 import {MatDatepickerModule} from "@angular/material/datepicker";
 import {MatNativeDateModule} from "@angular/material/core";
@@ -32,7 +30,6 @@ import { TimeTableYearComponent } from './components/time-table-year/time-table-
 @NgModule({
   declarations: [
     AppComponent,
-    ToolbarComponent,
     HomeComponent,
     MeasurePlanComponent,
     ToDoListComponent,
@@ -40,7 +37,6 @@ import { TimeTableYearComponent } from './components/time-table-year/time-table-
     DutyCheckComponent,
     MeasureFormComponent,
     LoginComponent,
-    NewScheduleComponent,
     TimeTableYearComponent
   ],
     imports: [
