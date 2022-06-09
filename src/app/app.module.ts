@@ -1,4 +1,4 @@
-import {LOCALE_ID, NgModule} from '@angular/core';
+import {NgModule} from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 
 import { AppRoutingModule } from './app-routing.module';
@@ -57,9 +57,8 @@ import { TimeTableYearComponent } from './components/time-table-year/time-table-
         MatSelectModule,
         MatDatepickerModule,
         MatNativeDateModule,
-
     ],
-  providers: [{provide: LOCALE_ID, useValue: "de-de"}],
+  providers: [],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

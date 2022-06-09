@@ -1,7 +1,19 @@
-<mat-card class="card">
+<mat-card class="card" *ngFor="let year of timeTableYear">
   <mat-card-header>
-    <mat-card-title>Aktuelles Fahrplanjahr</mat-card-title>
+    <mat-card-title class="card-title">Fahrplanjahr {{ year.name }}</mat-card-title>
+    <mat-card-subtitle>Gültig vom {{year.firstDate | date: 'dd.MM.yy'}} bis zum {{year.lastDate | date: 'dd.MM.yyyy'}}</mat-card-subtitle>
   </mat-card-header>
+  <mat-card-content>
+    <mat-list *ngFor="let railNetwork of year.railNetworks">
+      <mat-list-item>{{ railNetwork.name }} ({{railNetwork.abbreviation}})</mat-list-item>
+    </mat-list>
+    <button mat-fab class="edit" color="primary">
+      <mat-icon>edit</mat-icon>
+    </button>
+  </mat-card-content>
 </mat-card>
 
 
+<button mat-fab class="fab">
+  <mat-icon>add</mat-icon>
+</button>

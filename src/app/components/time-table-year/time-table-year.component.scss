@@ -1,0 +1,19 @@
+.card {
+  margin: 0 auto;
+  max-width: 800px;
+}
+
+.card + .card {
+  margin-top: 18px;
+}
+
+.fab {
+  position: fixed;
+  right: 16px;
+  bottom: 16px;
+}
+.card-title {
+  color: blue;
+  text-align: center;
+  border: solid thin black ;
+}
