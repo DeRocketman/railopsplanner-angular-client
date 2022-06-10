@@ -1,1 +1,33 @@
-<p>login works!</p>
+<div class="mat-card-wrapper">
+  <mat-card>
+    <mat-card-header>
+      <mat-card-title>Login</mat-card-title>
+    </mat-card-header>
+    <mat-card-content>
+        <mat-form-field appearance="outline">
+          <mat-label>Email</mat-label>
+          <input type="email" matInput [formControl]="emailFormControl" [errorStateMatcher]="matcher" placeholder="dirk.stricker@nordbahn.de">
+          <mat-error *ngIf="emailFormControl.hasError('email') && !emailFormControl.hasError('required')">
+            Bitte eine gültige Email eingeben
+          </mat-error>
+          <mat-error *ngIf="emailFormControl.hasError('required')">
+            Email ist <strong>notwendig</strong>
+          </mat-error>
+        </mat-form-field>
+        <mat-form-field appearance="outline">
+          <mat-label>Passwort</mat-label>
+          <input matInput [type]="pwHide ? 'password' : 'text'" [formControl]="pwdFormControl" [errorStateMatcher]="matcher">
+          <button mat-icon-button matSuffix (click)="pwHide = !pwHide" [attr.aria-label]="'Passwort verbergen'" [attr.aria-pressed]="pwHide">
+            <mat-icon>{{pwHide ? 'visibility_off' : 'visibility'}}</mat-icon>
+          </button>
+          <mat-error *ngIf="pwdFormControl.hasError('password') && !pwdFormControl.hasError('required')">
+            Bitte korrektes Passwort eingeben
+          </mat-error>
+          <mat-error *ngIf="emailFormControl.hasError('required')">
+            Passwort ist <strong>notwendig</strong>
+          </mat-error>
+        </mat-form-field>
+        <button mat-raised-button color="primary" >Login</button>
+    </mat-card-content>
+  </mat-card>
+</div>

@@ -26,6 +26,7 @@ import {MatSelectModule} from "@angular/material/select";
 import {MatDatepickerModule} from "@angular/material/datepicker";
 import {MatNativeDateModule} from "@angular/material/core";
 import { TimeTableYearComponent } from './components/time-table-year/time-table-year.component';
+import {HttpClient, HttpClientModule} from "@angular/common/http";
 
 @NgModule({
   declarations: [
@@ -43,6 +44,7 @@ import { TimeTableYearComponent } from './components/time-table-year/time-table-
         BrowserModule,
         AppRoutingModule,
         BrowserAnimationsModule,
+        HttpClientModule,
         MatToolbarModule,
         MatButtonModule,
         MatIconModule,
