@@ -1,10 +1,15 @@
+.mat-card-header {
+  margin: auto;
+  width: 100%;
+  text-align: center;
+}
 .card {
   margin: 0 auto;
   max-width: 800px;
 }
 
 .card + .card {
-  margin-top: 18px;
+  margin-top: 25px;
 }
 
 .fab {
@@ -12,8 +17,25 @@
   right: 16px;
   bottom: 16px;
 }
-.card-title {
-  color: blue;
-  text-align: center;
-  border: solid thin black ;
+.mat-card-title {
+  width: 100%;
+  margin: auto;
+  font-size: 30px;
+  color: rgb(67,80,175);
+}
+
+.mat-card-subtitle {
+  font-size: 14px;
+}
+
+.mat-list-item {
+  margin: 0px;
+}
+
+.mat-card-footer {
+  margin: 14px;
+}
+
+.edit {
+  margin-right: 660px;
 }

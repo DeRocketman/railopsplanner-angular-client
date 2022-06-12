@@ -2,12 +2,12 @@ import {Agent} from "./agent";
 import {User} from "./user";
 
 export interface Measure {
-  id: number;
-  name: string;
-  start: Date;
-  end: Date;
-  stations: string;
-  reasons: MeasureReason[];
+  id?: any;
+  name?: string;
+  start?: Date;
+  end?: Date;
+  stations?: string;
+  reasons?: MeasureReason[];
   effect?: string;
   passengerConcept?: string;
   lossKilometer?: number;
@@ -21,8 +21,8 @@ export interface Measure {
 }
 
 export interface MeasureReason {
-  id: number;
-  reason: string;
+  id?: any;
+  reason?: string;
   startOperationControlPoint?: string;
   endOperationControlPoint?: string;
   operatingMode?: string;
@@ -32,22 +32,22 @@ export interface MeasureReason {
 }
 
 export interface TrainFailure {
-  id: number;
-  trafficDay: Date;
-  trainNumber: string;
-  trainType: string;
-  startOperationControlPoint: string;
-  destinationOperationControlPoint: string;
-  failureFrom: string;
-  failureTo: string;
+  id?: any;
+  trafficDay?: Date;
+  trainNumber?: string;
+  trainType?: string;
+  startOperationControlPoint?: string;
+  destinationOperationControlPoint?: string;
+  failureFrom?: string;
+  failureTo?: string;
 }
 
 export interface ScheduleDeviation {
-  trafficDay: Date;
-  trainNumber: string;
-  trainType: string;
-  startOperationControlPoint: string;
-  destinationOperationControlPoint: string;
-  deviationType: string;
-  time: number;
+  trafficDay?: Date;
+  trainNumber?: string;
+  trainType?: string;
+  startOperationControlPoint?: string;
+  destinationOperationControlPoint?: string;
+  deviationType?: string;
+  time?: number;
 }

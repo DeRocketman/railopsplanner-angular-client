@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import {TimeTableYear} from "../../shared/time-table-year";
+import {TimeTableYearService} from "../../services/time-table-year.service";
 
 @Component({
   selector: 'rop-time-table-year',
@@ -7,72 +8,41 @@ import {TimeTableYear} from "../../shared/time-table-year";
   styleUrls: ['./time-table-year.component.scss']
 })
 export class TimeTableYearComponent implements OnInit {
-  timeTableYear: TimeTableYear[];
+  timeTableYear: TimeTableYear[] = [];
+  railNetworkCounter: number;
+  planningPeriodCounter: number;
+  measureCounter: number = 0;
 
-  constructor(
-  ) { }
+  constructor(private timeTableYearService: TimeTableYearService) { }
 
   ngOnInit(): void {
-    this.timeTableYear = [
-        {
-          id: 1,
-          name: "21/2022",
-          firstDate: new Date(2021, 11, 12),
-          lastDate: new Date(2022, 11, 10),
-          railNetworks: [
-            {
-              id: 1,
-              name: "Netz Mitte",
-              abbreviation: "NM",
-              planningPeriods: [
-                {
-                  id: 1,
-                  name: "Januar",
-                  start: new Date(2022, 1, 3),
-                  end: new Date(2022,2, 6)
-                },
-                {
-                  id: 2,
-                  name: "Februar",
-                  start: new Date(2022, 2, 7),
-                  end: new Date(2022,3, 6)
-                },
-                {
-                  id: 3,
-                  name: "Februar",
-                  start: new Date(2022, 3, 7),
-                  end: new Date(2022,4, 3)
-                },
-              ]
-            },
-            {
-              id: 2,
-              name: "Netz Nord",
-              abbreviation: "NN",
-              planningPeriods: [
-                {
-                  id: 1,
-                  name: "Januar",
-                  start: new Date(2022, 1, 3),
-                  end: new Date(2022,2, 6)
-                },
-                {
-                  id: 2,
-                  name: "Februar",
-                  start: new Date(2022, 2, 7),
-                  end: new Date(2022,3, 6)
-                },
-                {
-                  id: 3,
-                  name: "Februar",
-                  start: new Date(2022, 3, 7),
-                  end: new Date(2022,4, 3)
-                },
-              ]
-            },
-          ]
-        }
-      ]
+    this.receiveTimeTableYear();
+    this.printData();
   }
 
+  receiveTimeTableYear(): void {
+    this.timeTableYearService.getAll()
+      .subscribe({
+        next: (data) => {
+          this.timeTableYear = data;
+          for (let tty of this.timeTableYear ) {
+            this.railNetworkCounter = tty.railNetworks.length;
+            console.log("Anzahl der Netze für " + tty.name + ": "+ tty.railNetworks.length)
+            for (let rn of tty.railNetworks) {
+              this.planningPeriodCounter = rn.planningPeriods.length;
+              console.log("Anzahl der Perioden:" + rn.planningPeriods.length)
+              for (let pp of rn.planningPeriods) {
+                this.measureCounter = this.measureCounter + pp.measureList.length;
+              }
+            }
+          }
+        },
+        error: (e) => console.log(e)
+
+      });
+  }
+
+  printData(): void {
+    console.log(this.timeTableYear);
+  }
 }
