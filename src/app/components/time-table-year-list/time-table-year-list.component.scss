@@ -1,0 +1,19 @@
+div {
+  margin: auto;
+  max-width: 800px;
+}
+
+.time-table-item{
+  max-width: 800px;
+  margin-bottom: 25px;
+}
+
+.time-table-item + .time-table-item {
+  margin-top: 25px;
+}
+
+.fab {
+  position: fixed;
+  right: 16px;
+  bottom: 16px;
+}

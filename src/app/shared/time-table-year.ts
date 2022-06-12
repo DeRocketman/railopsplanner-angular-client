@@ -1,10 +1,10 @@
 import {RailNetwork} from "./rail-network";
 
 export interface TimeTableYear {
-  id?: any;
+  id?: number;
   name?: string;
-  firstDate?: string;
-  lastDate?: string;
+  firstDate?: Date;
+  lastDate?: Date;
   railNetworks?: RailNetwork[];
 }
 

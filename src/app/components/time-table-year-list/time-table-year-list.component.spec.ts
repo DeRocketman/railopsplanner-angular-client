@@ -1,20 +1,20 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { TimeTableYearComponent } from './time-table-year.component';
+import { TimeTableYearListComponent } from './time-table-year-list.component';
 
-describe('TimeTableYearComponent', () => {
-  let component: TimeTableYearComponent;
-  let fixture: ComponentFixture<TimeTableYearComponent>;
+describe('TimeTableYearListComponent', () => {
+  let component: TimeTableYearListComponent;
+  let fixture: ComponentFixture<TimeTableYearListComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ TimeTableYearComponent ]
+      declarations: [ TimeTableYearListComponent ]
     })
     .compileComponents();
   });
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(TimeTableYearComponent);
+    fixture = TestBed.createComponent(TimeTableYearListComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

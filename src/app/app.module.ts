@@ -25,8 +25,9 @@ import { LoginComponent } from './components/login/login.component';
 import {MatSelectModule} from "@angular/material/select";
 import {MatDatepickerModule} from "@angular/material/datepicker";
 import {MatNativeDateModule} from "@angular/material/core";
-import { TimeTableYearComponent } from './components/time-table-year/time-table-year.component';
 import {HttpClient, HttpClientModule} from "@angular/common/http";
+import { TimeTableYearListComponent } from './components/time-table-year-list/time-table-year-list.component';
+import { TimeTableYearListItemComponent } from './components/time-table-year-list/time-table-year-list-item/time-table-year-list-item.component';
 
 @NgModule({
   declarations: [
@@ -38,7 +39,8 @@ import {HttpClient, HttpClientModule} from "@angular/common/http";
     DutyCheckComponent,
     MeasureFormComponent,
     LoginComponent,
-    TimeTableYearComponent
+    TimeTableYearListComponent,
+    TimeTableYearListItemComponent
   ],
     imports: [
         BrowserModule,
@@ -59,6 +61,7 @@ import {HttpClient, HttpClientModule} from "@angular/common/http";
         MatSelectModule,
         MatDatepickerModule,
         MatNativeDateModule,
+        ReactiveFormsModule,
     ],
   providers: [],
   bootstrap: [AppComponent]
