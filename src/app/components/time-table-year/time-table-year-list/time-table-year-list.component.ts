@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import {TimeTableYear} from "../../shared/time-table-year";
-import {TimeTableYearService} from "../../services/time-table-year.service";
+import {TimeTableYear} from "../../../shared/time-table-year";
+import {TimeTableYearService} from "../../../services/time-table-year.service";
 
 @Component({
   selector: 'rop-time-table-year-list',

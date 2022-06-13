@@ -26,10 +26,10 @@ import {MatSelectModule} from "@angular/material/select";
 import {MatDatepickerModule} from "@angular/material/datepicker";
 import {MatNativeDateModule} from "@angular/material/core";
 import {HttpClient, HttpClientModule} from "@angular/common/http";
-import { TimeTableYearListComponent } from './components/time-table-year-list/time-table-year-list.component';
-import { TimeTableYearListItemComponent } from './components/time-table-year-list/time-table-year-list-item/time-table-year-list-item.component';
-import { TimeTableYearEditComponent } from './components/time-table-year-list/time-table-year-edit/time-table-year-edit.component';
-import { TimeTableYearCreateComponent } from './components/time-table-year-list/time-table-year-create/time-table-year-create.component';
+import { TimeTableYearListComponent } from './components/time-table-year/time-table-year-list/time-table-year-list.component';
+import { TimeTableYearListItemComponent } from './components/time-table-year/time-table-year-list-item/time-table-year-list-item.component';
+import { TimeTableYearEditComponent } from './components/time-table-year/time-table-year-edit/time-table-year-edit.component';
+import { TimeTableYearCreateComponent } from './components/time-table-year/time-table-year-create/time-table-year-create.component';
 
 @NgModule({
   declarations: [

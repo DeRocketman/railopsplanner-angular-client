@@ -2,7 +2,7 @@
   <mat-card>
     <mat-card-header>
       <mat-card-title class="card-title">Fahrplanjahr {{ timeTableYear.name }}</mat-card-title>
-      <mat-card-subtitle>Gültig vom {{ timeTableYear.firstDate }} bis zum {{ timeTableYear.lastDate }}</mat-card-subtitle>
+      <mat-card-subtitle>Gültig vom {{ timeTableYear.firstDate | date: 'dd.MM.yyyy' }} bis zum {{ timeTableYear.lastDate | date: 'dd.MM.yyyy' }}</mat-card-subtitle>
     </mat-card-header>
     <mat-card-content>
       <mat-list>
@@ -10,14 +10,14 @@
         <hr>
       </mat-list>
       <mat-list *ngFor="let railNetwork of timeTableYear.railNetworks">
-        <mat-list-item>{{ railNetwork.name }} ({{railNetwork.abbreviation}}) </mat-list-item>
+        <mat-list-item> <b>{{ railNetwork.name }} ({{railNetwork.abbreviation}}) </b></mat-list-item>
         <mat-list-item>Anzahl der Planungsperioden: {{planningPeriodCounter}}</mat-list-item>
         <mat-list-item>Anzahl der Maßnahmen:        {{measureCounter}} </mat-list-item>
         <hr>
       </mat-list>
     </mat-card-content>
     <mat-card-footer>
-      <button mat-fab class="edit" color="primary">
+      <button mat-fab class="edit" color="primary" routerLink="edit/{{timeTableYear.id}}" routerLinkActive="active">
         <mat-icon>edit</mat-icon>
       </button>
       <button mat-fab class="delete" color="warn">
