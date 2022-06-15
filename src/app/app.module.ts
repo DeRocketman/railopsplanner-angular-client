@@ -30,6 +30,7 @@ import { TimeTableYearListComponent } from './components/time-table-year/time-ta
 import { TimeTableYearListItemComponent } from './components/time-table-year/time-table-year-list-item/time-table-year-list-item.component';
 import { TimeTableYearEditComponent } from './components/time-table-year/time-table-year-edit/time-table-year-edit.component';
 import { TimeTableYearCreateComponent } from './components/time-table-year/time-table-year-create/time-table-year-create.component';
+import { TimeTableYearFormComponent } from './components/time-table-year/time-table-year-form/time-table-year-form.component';
 
 @NgModule({
   declarations: [
@@ -44,7 +45,8 @@ import { TimeTableYearCreateComponent } from './components/time-table-year/time-
     TimeTableYearListComponent,
     TimeTableYearListItemComponent,
     TimeTableYearEditComponent,
-    TimeTableYearCreateComponent
+    TimeTableYearCreateComponent,
+    TimeTableYearFormComponent
   ],
     imports: [
         BrowserModule,
@@ -61,7 +63,6 @@ import { TimeTableYearCreateComponent } from './components/time-table-year/time-
         MatFormFieldModule,
         MatInputModule,
         MatCardModule,
-        ReactiveFormsModule,
         MatSelectModule,
         MatDatepickerModule,
         MatNativeDateModule,

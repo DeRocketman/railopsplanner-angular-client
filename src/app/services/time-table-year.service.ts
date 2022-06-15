@@ -1,9 +1,10 @@
 import { Injectable } from '@angular/core';
 import {HttpClient, HttpErrorResponse} from "@angular/common/http";
-import {throwError, map, Observable, retry, catchError} from "rxjs";
+import { map, retry, catchError} from "rxjs/operators";
 import {TimeTableYear} from "../shared/time-table-year";
 import {TimeTableYearRaw} from "../shared/time-table-year-raw";
 import {TimeTableYearFactory} from "../shared/time-table-year-factory";
+import {Observable, throwError} from "rxjs";
 
 const baseUrl = 'http://localhost:8080/api'
 @Injectable({
@@ -17,28 +18,22 @@ export class TimeTableYearService {
     return this.http.get<TimeTableYearRaw[]>(`${baseUrl}/time-table-year`)
       .pipe(
         retry(3),
-        map(timeTableYearRaw =>
-          timeTableYearRaw.map(tty => TimeTableYearFactory.fromRaw(tty)),
-        ),
-        catchError(this.errorHandler)
-      )
+        map(ttyRaw => ttyRaw.map(tty => TimeTableYearFactory.fromRaw(tty))),
+      );
   }
 
-  getSingle(id: number): Observable<TimeTableYear> {
+  getSingle(id: string): Observable<TimeTableYear> {
     return this.http.get<TimeTableYearRaw>(
-      `${baseUrl}/time-table-year/${id}`
-    ).pipe(
-      retry(3),
-      map(tty => TimeTableYearFactory.fromRaw(tty)),
-      catchError(this.errorHandler)
+      `${baseUrl}/time-table-year/${id}`)
+      .pipe(
+        retry(3),
+        map(tty => TimeTableYearFactory.fromRaw(tty))
     );
   }
 
   create(tty: TimeTableYear): Observable<any> {
     return this.http.post(`${baseUrl}/time-table-year`, tty,
       { responseType: 'text'}
-    ).pipe(
-      catchError(this.errorHandler)
     );
   }
 
@@ -47,17 +42,13 @@ export class TimeTableYearService {
       `${baseUrl}/time-table-year/${tty.id}`,
       tty,
       { responseType: 'text' }
-    ).pipe(
-      catchError(this.errorHandler)
     );
   }
 
-  delete(id: number): Observable<any> {
+  delete(id: string): Observable<any> {
     return this.http.delete(
       `${baseUrl}/time-table-year/${id}`,
       { responseType: 'text' }
-    ).pipe(
-      catchError(this.errorHandler)
     );
   }
 
@@ -65,8 +56,4 @@ export class TimeTableYearService {
     return this.http.delete(baseUrl);
   }
 
-  private errorHandler(error: HttpErrorResponse): Observable<any> {
-    console.error('Fehler aufgetreten!');
-    return throwError(error);
-  }
 }

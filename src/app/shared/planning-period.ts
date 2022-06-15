@@ -1,9 +1,8 @@
 import {Measure} from "./measure";
 
 export interface PlanningPeriod {
-  id?: any;
+  id?: string;
   name?: string;
   start?: Date;
   end?: Date;
-  measureList?: Measure[];
 }
