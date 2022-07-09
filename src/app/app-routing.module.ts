@@ -6,13 +6,16 @@ import { ToDoListComponent } from "./components/to-do-list/to-do-list.component"
 import { SettingsComponent } from "./components/settings/settings.component";
 import { DutyCheckComponent } from "./components/duty-check/duty-check.component";
 import { LoginComponent } from "./components/login/login.component";
-import {TimeTableYearListComponent} from "./components/time-table-year/time-table-year-list/time-table-year-list.component";
+
 import {
   TimeTableYearEditComponent
 } from "./components/time-table-year/time-table-year-edit/time-table-year-edit.component";
 import {
   TimeTableYearCreateComponent
 } from "./components/time-table-year/time-table-year-create/time-table-year-create.component";
+import {
+  TimeTableYearListComponent
+} from "./components/time-table-year/time-table-year-list/time-table-year-list.component";
 
 
 const routes: Routes = [

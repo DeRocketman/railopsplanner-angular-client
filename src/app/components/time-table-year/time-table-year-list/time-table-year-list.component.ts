@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import {TimeTableYear} from "../../../shared/time-table-year";
 import {TimeTableYearService} from "../../../services/time-table-year.service";
-import {DatePipe} from "@angular/common";
 
 
 @Component({
@@ -11,11 +10,10 @@ import {DatePipe} from "@angular/common";
 })
 export class TimeTableYearListComponent implements OnInit {
   timeTableYearList: TimeTableYear[] = [];
-  constructor(private ttyService: TimeTableYearService, private datePipe: DatePipe) {
+  constructor(private ttyService: TimeTableYearService) {
   }
 
   ngOnInit(): void {
     this.ttyService.getAll().subscribe(res => this.timeTableYearList = res);
-
   }
 }
