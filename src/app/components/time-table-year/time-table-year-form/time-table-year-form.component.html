@@ -1,12 +1,53 @@
-<form
-      [formGroup]="ttyForm"
-      (ngSubmit)="submitForm()">
-  <mat-card>
-    <mat-label>Fahrplan-Bezeichnung</mat-label>
-    <input formControlName="name">
-    <mat-label>Erster Verkehrstag</mat-label>
-    <input type="text" formControlName="firstDate">
-    <mat-label>Letzter Verkehrstag</mat-label>
-    <input type="text" formControlName="lastDate">
-  </mat-card>
+<form [formGroup]="ttyForm" (ngSubmit)="submitForm()">
+    <mat-card>
+        <mat-card-title>Jahresfahrplan-Daten</mat-card-title>
+        <mat-label>Fahrplan-Bezeichnung:</mat-label>
+        <input formControlName="name">
+        <mat-label>Erster Verkehrstag:</mat-label>
+        <input type="date" formControlName="firstDate">
+        <mat-label>Letzter Verkehrstag:</mat-label>
+        <input type="date" formControlName="lastDate">
+    </mat-card>
+
+    <mat-card>
+        <mat-card-title>Netze</mat-card-title>
+        <mat-card-content *ngFor="let c of railNetworks.controls; index as i" [formGroupName]="i">
+            <div>
+                <mat-label>Netz-Bezeichnung:</mat-label>
+                <input formControlName="name">
+                <mat-label>Abkürzung:</mat-label>
+                <input formControlName="abbreviation">
+            </div>
+        </mat-card-content>
+        <mat-card-footer>
+            <button mat-fab class="new network button" color="primary" (click)="addRailNetworkControl()">
+        <mat-icon>add</mat-icon>
+      </button>
+            <button mat-fab class="delete" color="warn">
+        <mat-icon>delete</mat-icon>
+      </button>
+        </mat-card-footer>
+    </mat-card>
+
+    <mat-card formArrayName="planningPeriods">
+        <mat-card-title>Planungs-Perioden</mat-card-title>
+        <mat-card-content *ngFor="let c of planningPeriods.controls; index as i" [formGroupName]="i">
+            <div>
+                <mat-label>Periodenbezeichnung:</mat-label>
+                <input formControlName="name">
+                <mat-label>Periodenbeginn:</mat-label>
+                <input type=date formControlName="start" useValueAsDate>
+                <mat-label>Periodenende</mat-label>
+                <input type=date formControlName="end">
+            </div>
+        </mat-card-content>
+        <mat-card-footer>
+            <button mat-fab class="new period button" color="primary" (click)="addPlanningPeriodsControl()">
+        <mat-icon>add</mat-icon>
+      </button>
+            <button mat-fab class="delete" color="warn">
+        <mat-icon>delete</mat-icon>
+      </button>
+        </mat-card-footer>
+    </mat-card>
 </form>

@@ -1,7 +1,8 @@
-import {Component, EventEmitter, Input, OnChanges, OnInit, Output, SimpleChanges} from '@angular/core';
+import {Component, EventEmitter, Input, OnChanges, OnInit, Output} from '@angular/core';
 import {TimeTableYear} from "../../../shared/time-table-year";
-import {FormArray, FormBuilder, FormControl, FormGroup} from "@angular/forms";
+import {FormArray, FormBuilder, FormGroup} from "@angular/forms";
 import {RailNetwork} from "../../../shared/rail-network";
+import {PlanningPeriod} from "../../../shared/planning-period";
 
 @Component({
   selector: 'rop-time-table-year-form',
@@ -12,6 +13,7 @@ export class TimeTableYearFormComponent implements OnInit, OnChanges {
   ttyForm: FormGroup;
 
   @Input() timeTableYear?: TimeTableYear;
+
   @Input() set editing(isEditing: boolean) {
     const idControl = this.ttyForm.get('id')!;
     if(isEditing) {
@@ -24,11 +26,16 @@ export class TimeTableYearFormComponent implements OnInit, OnChanges {
   @Output() submitTimeTableYear = new EventEmitter<TimeTableYear>();
 
   constructor(private fb: FormBuilder) {
-    this.ttyForm = this.fb.group(
-      {
+    this.ttyForm = this.fb.group({
           name: [''],
           firstDate: [''],
-          lastDate: ['']
+          lastDate: [''],
+          railNetworks: this.buildRailNetworksArray([
+            { name: '', abbreviation: ''}
+          ]),
+          planningPeriods: this.buildPlanningPeriodsArray([
+            { name:''}
+          ]),
       }
     )
   }
@@ -39,6 +46,7 @@ export class TimeTableYearFormComponent implements OnInit, OnChanges {
   ngOnChanges(): void {
     if (this.timeTableYear) {
       this.setFormValues(this.timeTableYear);
+      console.log(this.timeTableYear)
     }
   }
 
@@ -51,6 +59,13 @@ export class TimeTableYearFormComponent implements OnInit, OnChanges {
         this.buildRailNetworksArray(tty.railNetworks)
       );
     }
+
+    if (tty.planningPeriods) {
+      this.ttyForm.setControl(
+        "planningPeriods",
+        this.buildPlanningPeriodsArray(tty.planningPeriods)
+      )
+    }
   }
 
   private buildRailNetworksArray(values: RailNetwork[]): FormArray {
@@ -59,15 +74,32 @@ export class TimeTableYearFormComponent implements OnInit, OnChanges {
     );
   }
 
+  private buildPlanningPeriodsArray(values: PlanningPeriod[]): FormArray {
+    return this.fb.array(
+      values.map(pp => this.fb.group(pp))
+    );
+  }
+
   get railNetworks(): FormArray {
     return this.ttyForm.get('railNetworks') as FormArray;
   }
 
+  get planningPeriods(): FormArray {
+    return this.ttyForm.get('planningPeriods') as FormArray;
+  }
+
   addRailNetworkControl() {
-    this.railNetworks.push(this.fb.group({
+    this.railNetworks.push(
+      this.fb.group({ name: '', abbreviation:'', })
+    );
+  }
+
+  addPlanningPeriodsControl() {
+    this.planningPeriods.push(this.fb.group({
       name: '',
-      abbreviation:'',
-    }))
+      start: '',
+      end: ''
+    }));
   }
 
   submitForm() {
