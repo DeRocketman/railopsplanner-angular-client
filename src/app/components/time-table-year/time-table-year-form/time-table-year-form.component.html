@@ -9,16 +9,18 @@
         <input type="date" formControlName="lastDate">
     </mat-card>
 
-    <mat-card>
+    <mat-card formArrayName="railNetworks">
         <mat-card-title>Netze</mat-card-title>
-        <mat-card-content *ngFor="let c of railNetworks.controls; index as i" [formGroupName]="i">
-            <div>
-                <mat-label>Netz-Bezeichnung:</mat-label>
-                <input formControlName="name">
-                <mat-label>Abkürzung:</mat-label>
-                <input formControlName="abbreviation">
-            </div>
-        </mat-card-content>
+        <div>
+            <mat-card-content>
+                <div *ngFor="let c of railNetworks.controls; index as i" [formGroupName]="i">
+                    <mat-label>Netz-Bezeichnung:</mat-label>
+                    <input formControlName="name">
+                    <mat-label>Abkürzung:</mat-label>
+                    <input formControlName="abbreviation">
+                </div>
+            </mat-card-content>
+        </div>
         <mat-card-footer>
             <button mat-fab class="new network button" color="primary" (click)="addRailNetworkControl()">
         <mat-icon>add</mat-icon>

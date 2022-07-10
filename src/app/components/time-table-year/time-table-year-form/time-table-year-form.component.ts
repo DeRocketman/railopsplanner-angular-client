@@ -34,7 +34,7 @@ export class TimeTableYearFormComponent implements OnInit, OnChanges {
             { name: '', abbreviation: ''}
           ]),
           planningPeriods: this.buildPlanningPeriodsArray([
-            { name:''}
+            { name:'',}
           ]),
       }
     )
@@ -46,7 +46,6 @@ export class TimeTableYearFormComponent implements OnInit, OnChanges {
   ngOnChanges(): void {
     if (this.timeTableYear) {
       this.setFormValues(this.timeTableYear);
-      console.log(this.timeTableYear)
     }
   }
 
