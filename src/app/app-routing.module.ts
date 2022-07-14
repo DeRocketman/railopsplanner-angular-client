@@ -16,19 +16,20 @@ import {
 import {
   TimeTableYearListComponent
 } from "./components/time-table-year/time-table-year-list/time-table-year-list.component";
+import {AuthGuard} from "./services/auth.guard";
 
 
 const routes: Routes = [
-  { path: '', redirectTo: 'home', pathMatch: 'full'},
-  { path: 'home', component: HomeComponent },
-  { path: 'measure-plan', component: MeasurePlanComponent },
-  { path: 'to-do-list', component: ToDoListComponent },
-  { path: 'settings', component: SettingsComponent },
-  { path: 'duty-check', component: DutyCheckComponent },
+  { path: '', redirectTo: 'login', pathMatch: 'full'},
   { path: 'login', component: LoginComponent },
-  { path: 'time-table-year', component: TimeTableYearListComponent},
-  { path: 'time-table-year/create', component: TimeTableYearCreateComponent},
-  { path: 'time-table-year/edit/:id', component: TimeTableYearEditComponent},
+  { path: 'home', component: HomeComponent, canActivate:[AuthGuard] },
+  { path: 'measure-plan', component: MeasurePlanComponent, canActivate:[AuthGuard] },
+  { path: 'to-do-list', component: ToDoListComponent, canActivate:[AuthGuard] },
+  { path: 'settings', component: SettingsComponent, canActivate:[AuthGuard] },
+  { path: 'duty-check', component: DutyCheckComponent, canActivate:[AuthGuard] },
+  { path: 'time-table-year', component: TimeTableYearListComponent, canActivate:[AuthGuard]},
+  { path: 'time-table-year/create', component: TimeTableYearCreateComponent, canActivate:[AuthGuard]},
+  { path: 'time-table-year/edit/:id', component: TimeTableYearEditComponent, canActivate:[AuthGuard] },
 ];
 
 @NgModule({

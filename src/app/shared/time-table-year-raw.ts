@@ -6,6 +6,8 @@ export interface TimeTableYearRaw {
   name: string;
   firstDate: string;
   lastDate: string;
+  railNetworksCounter: number,
+  planningPeriodsCounter: number,
   railNetworks?: RailNetwork[];
   planningPeriods?: PlanningPeriod[];
 }

@@ -30,7 +30,7 @@
         <mat-icon mat-list-icon>settings</mat-icon>
         Einstellungen
       </a>
-      <a mat-list-item routerLink="login" routerLinkActive="active">
+      <a mat-list-item (click)="logout()" routerLinkActive="active">
         <mat-icon mat-list-icon>logout</mat-icon>
         Logout
       </a>
@@ -38,9 +38,11 @@
   </mat-sidenav>
   <mat-sidenav-content class="sidenav-content">
     <mat-toolbar class="mat-elevation-z4" color="primary">
-      <button mat-icon-button (click)="sidenav.toggle()">
-        <mat-icon>menu</mat-icon>
-      </button>
+      <div *ngIf="isLoggedIn">
+        <button mat-icon-button (click)="sidenav.toggle()">
+          <mat-icon>menu</mat-icon>
+        </button>
+      </div>
       NBE - Rail-Operations-Planner
     </mat-toolbar>
     <main class="content">
