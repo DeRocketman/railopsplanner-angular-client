@@ -1,4 +1,4 @@
-<form [formGroup]="ttyForm" (ngSubmit)="submitForm()">
+<form novalidate [formGroup]="ttyForm" (ngSubmit)="submitForm(ttyForm.value)">
     <mat-card>
         <mat-card-title>Jahresfahrplan-Daten</mat-card-title>
         <mat-label>Fahrplan-Bezeichnung:</mat-label>
@@ -9,47 +9,59 @@
         <input type="date" formControlName="lastDate">
     </mat-card>
 
-    <mat-card formArrayName="railNetworks">
+    <mat-card>
         <mat-card-title>Netze</mat-card-title>
         <div>
-            <mat-card-content>
-                <div *ngFor="let c of railNetworks.controls; index as i" [formGroupName]="i">
-                    <mat-label>Netz-Bezeichnung:</mat-label>
-                    <input formControlName="name">
-                    <mat-label>Abkürzung:</mat-label>
-                    <input formControlName="abbreviation">
+            <mat-card-content formArrayName="railNetworks">
+              <div *ngFor="let r of railNetworksArray.controls; let i = index" >
+                <div [formGroupName]="i">
+                  <mat-label>Netz-Bezeichnung:</mat-label>
+                  <input formControlName="name">
+                  <mat-label>Abkürzung:</mat-label>
+                  <input formControlName="abbreviation">
+                  <button mat-fab class="delete" color="warn" (click)="removeRailNetwork(i)">
+                    <mat-icon>delete</mat-icon>
+                  </button>
                 </div>
+              </div>
             </mat-card-content>
         </div>
         <mat-card-footer>
-            <button mat-fab class="new network button" color="primary" (click)="addRailNetworkControl()">
+            <button mat-fab class="new network button" color="primary" (click)="addRailNetwork()">
         <mat-icon>add</mat-icon>
-      </button>
-            <button mat-fab class="delete" color="warn">
-        <mat-icon>delete</mat-icon>
       </button>
         </mat-card-footer>
     </mat-card>
 
     <mat-card formArrayName="planningPeriods">
         <mat-card-title>Planungs-Perioden</mat-card-title>
-        <mat-card-content *ngFor="let c of planningPeriods.controls; index as i" [formGroupName]="i">
-            <div>
-                <mat-label>Periodenbezeichnung:</mat-label>
-                <input formControlName="name">
-                <mat-label>Periodenbeginn:</mat-label>
-                <input type=date formControlName="start" useValueAsDate>
-                <mat-label>Periodenende</mat-label>
-                <input type=date formControlName="end">
+        <mat-card-content>
+            <div *ngFor= "let p of planningPeriodsArray.controls; let i = index">
+                <div [formGroupName]="i">
+                  <mat-label>Periodenbezeichnung:</mat-label>
+                  <input formControlName="name">
+                  <mat-label>Periodenbeginn:</mat-label>
+                  <input type=date formControlName="start">
+                  <mat-label>Periodenende</mat-label>
+                  <input type=date formControlName="end">
+                  <button mat-fab class="delete" color="warn" (click)="removePlanningPeriod(i)">
+                    <mat-icon>delete</mat-icon>
+                  </button>
+                </div>
             </div>
         </mat-card-content>
         <mat-card-footer>
-            <button mat-fab class="new period button" color="primary" (click)="addPlanningPeriodsControl()">
-        <mat-icon>add</mat-icon>
-      </button>
-            <button mat-fab class="delete" color="warn">
-        <mat-icon>delete</mat-icon>
-      </button>
+            <button mat-fab class="new period button" color="primary" (click)="addPlanningPeriods()">
+              <mat-icon>add</mat-icon>
+            </button>
         </mat-card-footer>
     </mat-card>
+    <div>
+      <button mat-fab type="submit" color="primary">
+        <mat-icon>check</mat-icon>
+      </button>
+      <button mat-fab type="reset" color="accent">
+        <mat-icon>cancel</mat-icon>
+      </button>
+    </div>
 </form>

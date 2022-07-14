@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import {TimeTableYearService} from "../../../services/time-table-year.service";
 import {ActivatedRoute, Router} from "@angular/router";
 import {TimeTableYear} from "../../../shared/time-table-year";
+import {RailNetworkService} from "../../../services/rail-network.service";
 
 @Component({
   selector: 'rop-time-table-year-create',
@@ -12,6 +13,7 @@ export class TimeTableYearCreateComponent implements OnInit {
 
   constructor(
     private ttys: TimeTableYearService,
+    private railNetService: RailNetworkService,
     private route: ActivatedRoute,
     private router: Router
   ) { }
@@ -21,7 +23,7 @@ export class TimeTableYearCreateComponent implements OnInit {
 
   createTimeTableYear(tty: TimeTableYear) {
     this.ttys.create(tty).subscribe(() => {
-      this.router.navigate(['../', 'time-table-year'], {relativeTo: this.route})
+      this.router.navigate(['time-table-year'])
     });
   }
 }

@@ -27,7 +27,7 @@ export class TimeTableYearEditComponent implements OnInit {
 
   updateTimeTableYear(tty: TimeTableYear) {
     this.ttyService.update(tty).subscribe(() => {
-      this.router.navigate([tty.id], {relativeTo: this.route});
+      this.router.navigate(['time-table-year']);
     });
   }
 }

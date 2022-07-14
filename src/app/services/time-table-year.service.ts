@@ -32,14 +32,14 @@ export class TimeTableYearService {
   }
 
   create(tty: TimeTableYear): Observable<any> {
-    return this.http.post(`${BASE_URL}/time-table-year`, tty,
+    return this.http.post(`${BASE_URL}/time-table-year/create`, tty,
       { responseType: 'text'}
     );
   }
 
   update(tty: TimeTableYear): Observable<any> {
     return this.http.put(
-      `${BASE_URL}/time-table-year/${tty.id}`,
+      `${BASE_URL}/time-table-year/edit/${tty.id}`,
       tty,
       { responseType: 'text' }
     );

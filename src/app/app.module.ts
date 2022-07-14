@@ -31,7 +31,7 @@ import { TimeTableYearListItemComponent } from './components/time-table-year/tim
 import { TimeTableYearEditComponent } from './components/time-table-year/time-table-year-edit/time-table-year-edit.component';
 import { TimeTableYearCreateComponent } from './components/time-table-year/time-table-year-create/time-table-year-create.component';
 import { TimeTableYearFormComponent } from './components/time-table-year/time-table-year-form/time-table-year-form.component';
-import {AuthInterceptor} from "./components/helpers/auth.interceptor";
+import {AuthInterceptor} from "./helpers/auth.interceptor";
 
 @NgModule({
   declarations: [

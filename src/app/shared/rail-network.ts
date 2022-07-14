@@ -2,7 +2,7 @@ import {PlanningPeriod} from "./planning-period";
 import {Measure} from "./measure";
 
 export interface RailNetwork {
-  id?: any;
+  id?: string;
   name?: string;
   abbreviation?: string;
   measureList?: Measure[];
