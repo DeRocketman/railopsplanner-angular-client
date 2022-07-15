@@ -21,8 +21,8 @@ export class TimeTableYearFormComponent {
   constructor(private fb: FormBuilder, private ttyService: TimeTableYearService) {
     this.ttyForm = this.fb.group({
           name: [''],
-          firstDate: [],
-          lastDate: [],
+          firstDate: [''],
+          lastDate: [''],
           railNetworks: fb.array([
             this.createRailNetworkControl()
           ]),
@@ -30,11 +30,11 @@ export class TimeTableYearFormComponent {
             this.createPlanningPeriodsControl()
           ]),
     });
-    this.ttyForm.valueChanges.subscribe((value) =>
-    Object.assign(this.timeTableYear, value))
-
     this.railNetworksArray = <FormArray>this.ttyForm.controls['railNetworks'];
     this.planningPeriodsArray = <FormArray>this.ttyForm.controls['planningPeriods'];
+
+    this.ttyForm.valueChanges.subscribe((value) =>
+    Object.assign(this.timeTableYear, value))
   }
 
   private createRailNetworkControl(): FormGroup {
@@ -47,8 +47,8 @@ export class TimeTableYearFormComponent {
   private createPlanningPeriodsControl(): FormGroup {
     return new FormGroup({
       name: new FormControl(''),
-      start: new FormControl([]),
-      end: new FormControl([])
+      start: new FormControl(['']),
+      end: new FormControl([''])
     });
   }
 
@@ -87,7 +87,22 @@ export class TimeTableYearFormComponent {
   }
 
   submitForm(value: TimeTableYear) {
-    console.log(value)
+    const id= this.timeTableYear ? this.timeTableYear.id : "TO GENERATE";
+    value.id = id;
+
+    for (let i = 0; i < value.railNetworks.length; i++) {
+      if (value.railNetworks[i] == null || value.railNetworks[i].name == null || value.railNetworks[i].name == '') {
+        delete value.railNetworks[i];
+        console.log("Leeres Netz gelöscht");
+      }
+    }
+
+    for (let i = 0; i < value.planningPeriods.length; i++) {
+      if (value.planningPeriods[i] == null || value.planningPeriods[i].name == null || value.planningPeriods[i].name == '') {
+        console.log("Leere Periode gelöscht");
+        delete value.planningPeriods[i];
+      }
+    }
 
     this.submitTimeTableYear.emit(value);
     this.ttyForm.reset();

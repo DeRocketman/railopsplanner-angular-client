@@ -32,6 +32,7 @@ import { TimeTableYearEditComponent } from './components/time-table-year/time-ta
 import { TimeTableYearCreateComponent } from './components/time-table-year/time-table-year-create/time-table-year-create.component';
 import { TimeTableYearFormComponent } from './components/time-table-year/time-table-year-form/time-table-year-form.component';
 import {AuthInterceptor} from "./helpers/auth.interceptor";
+import { StatisticComponent } from './components/statistic/statistic.component';
 
 @NgModule({
   declarations: [
@@ -47,7 +48,8 @@ import {AuthInterceptor} from "./helpers/auth.interceptor";
     TimeTableYearListItemComponent,
     TimeTableYearEditComponent,
     TimeTableYearCreateComponent,
-    TimeTableYearFormComponent
+    TimeTableYearFormComponent,
+    StatisticComponent
   ],
     imports: [
         BrowserModule,

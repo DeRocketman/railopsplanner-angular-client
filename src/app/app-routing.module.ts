@@ -17,6 +17,7 @@ import {
   TimeTableYearListComponent
 } from "./components/time-table-year/time-table-year-list/time-table-year-list.component";
 import {AuthGuard} from "./services/auth.guard";
+import {StatisticComponent} from "./components/statistic/statistic.component";
 
 
 const routes: Routes = [
@@ -27,6 +28,7 @@ const routes: Routes = [
   { path: 'to-do-list', component: ToDoListComponent, canActivate:[AuthGuard] },
   { path: 'settings', component: SettingsComponent, canActivate:[AuthGuard] },
   { path: 'duty-check', component: DutyCheckComponent, canActivate:[AuthGuard] },
+  { path: 'statistic', component: StatisticComponent, canActivate:[AuthGuard] },
   { path: 'time-table-year', component: TimeTableYearListComponent, canActivate:[AuthGuard]},
   { path: 'time-table-year/create', component: TimeTableYearCreateComponent, canActivate:[AuthGuard]},
   { path: 'time-table-year/edit/:id', component: TimeTableYearEditComponent, canActivate:[AuthGuard] },

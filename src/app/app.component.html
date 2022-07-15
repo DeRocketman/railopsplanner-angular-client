@@ -38,11 +38,9 @@
   </mat-sidenav>
   <mat-sidenav-content class="sidenav-content">
     <mat-toolbar class="mat-elevation-z4" color="primary">
-      <div *ngIf="isLoggedIn">
-        <button mat-icon-button (click)="sidenav.toggle()">
-          <mat-icon>menu</mat-icon>
-        </button>
-      </div>
+      <button mat-icon-button (click)="sidenav.toggle()">
+        <mat-icon>menu</mat-icon>
+      </button>
       NBE - Rail-Operations-Planner
     </mat-toolbar>
     <main class="content">

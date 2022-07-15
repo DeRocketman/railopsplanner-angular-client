@@ -18,6 +18,7 @@ export interface Measure {
   responseDate?: Date;
   measureKind?: string;
   clerks?: User[]
+  railNetwork?: Measure;
 }
 
 export interface MeasureReason {

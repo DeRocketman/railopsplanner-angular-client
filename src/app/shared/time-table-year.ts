@@ -6,8 +6,6 @@ export interface TimeTableYear {
   name: string;
   firstDate: Date;
   lastDate: Date;
-  railNetworksCounter: number,
-  planningPeriodsCounter: number,
   railNetworks?: RailNetwork[];
   planningPeriods?: PlanningPeriod[];
 }

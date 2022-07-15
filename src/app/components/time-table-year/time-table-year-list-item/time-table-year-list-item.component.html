@@ -12,7 +12,8 @@
             </mat-list>
             <mat-list *ngFor="let railNetwork of timeTableYear.railNetworks">
                 <mat-list-item> <b>{{ railNetwork.name }} ({{railNetwork.abbreviation}}) </b></mat-list-item>
-                <mat-list-item>Anzahl der Maßnahmen: {{ railNetwork.measureList.length }} </mat-list-item>
+                <mat-list-item *ngIf="railNetwork.measureList">Anzahl der Maßnahmen: {{ railNetwork.measureList.length }} </mat-list-item>
+                <mat-list-item *ngIf="!railNetwork.measureList">Anzahl der Maßnahmen: 0 </mat-list-item>
                 <hr>
             </mat-list>
         </mat-card-content>
@@ -20,7 +21,7 @@
             <button mat-fab class="edit" color="primary" routerLink="edit/{{timeTableYear.id}}" routerLinkActive="active">
         <mat-icon>edit</mat-icon>
       </button>
-            <button mat-fab class="delete" color="warn">
+            <button mat-fab class="delete" color="warn" (click)="removeItem()" >
         <mat-icon>delete</mat-icon>
       </button>
         </mat-card-footer>
