@@ -4,6 +4,8 @@ import {ActivatedRoute, Router} from "@angular/router";
 import {TimeTableYear} from "../../../shared/time-table-year";
 import {RailNetworkService} from "../../../services/rail-network.service";
 import {RailNetwork} from "../../../shared/rail-network";
+import {PlanningPeriod} from "../../../shared/planning-period";
+import {PlanningPeriodService} from "../../../services/planning-period.service";
 
 @Component({
   selector: 'rop-time-table-year-create',
@@ -15,6 +17,7 @@ export class TimeTableYearCreateComponent implements OnInit {
   constructor(
     private ttys: TimeTableYearService,
     private railNetService: RailNetworkService,
+    private planningPeriodService: PlanningPeriodService,
     private route: ActivatedRoute,
     private router: Router
   ) { }
@@ -31,11 +34,19 @@ export class TimeTableYearCreateComponent implements OnInit {
         railNetwork.timeTableYear = createdTimeTable;
         this.createRailNetwork(railNetwork);
       }
+      for (let planningPeriods of tty.planningPeriods) {
+        planningPeriods.timeTableYear = createdTimeTable;
+        this.createPlanningPeriod(planningPeriods);
+      }
       this.router.navigate(['time-table-year'])
     });
   }
 
   createRailNetwork(rn: RailNetwork) {
     this.railNetService.create(rn).subscribe((res) => console.log(res));
+  }
+
+  createPlanningPeriod(pp: PlanningPeriod) {
+    this.planningPeriodService.create(pp).subscribe((res)=> console.log(res));
   }
 }

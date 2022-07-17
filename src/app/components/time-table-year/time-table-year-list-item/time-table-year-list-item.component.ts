@@ -1,4 +1,4 @@
-import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
+import {Component, Input, OnInit} from '@angular/core';
 import {TimeTableYear} from "../../../shared/time-table-year";
 import {TimeTableYearService} from "../../../services/time-table-year.service";
 import {RailNetworkService} from "../../../services/rail-network.service";
@@ -14,9 +14,13 @@ import {PlanningPeriodService} from "../../../services/planning-period.service";
 export class TimeTableYearListItemComponent implements OnInit {
   @Input() timeTableYear: TimeTableYear;
 
-  constructor(private timeTableYearService: TimeTableYearService,private railNetworkService: RailNetworkService,
-              private measureService: MeasureService, private planningPeriodService: PlanningPeriodService ,private router: Router) {
-  }
+  constructor(
+    private timeTableYearService: TimeTableYearService,
+    private railNetworkService: RailNetworkService,
+    private measureService: MeasureService,
+    private planningPeriodService: PlanningPeriodService,
+    private router: Router
+  ) {}
 
   ngOnInit(): void {
 
@@ -37,6 +41,10 @@ export class TimeTableYearListItemComponent implements OnInit {
           this.router.navigate(["time-table-year"]);
       });
     }
+  }
+
+  showEditRailNetworkButton(isMouseEnter: boolean) {
+
   }
 
 

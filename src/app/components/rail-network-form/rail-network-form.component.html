@@ -1,0 +1,23 @@
+<form [formGroup]="railNetworkFormGroup">
+  <mat-card class="mat-card-rail-network-data">
+    <mat-card-header>
+      <mat-card-title>Netz-Daten</mat-card-title>
+    </mat-card-header>
+     <mat-card-content>
+       <mat-label>Netz-Bezeichnung:</mat-label>
+       <input formControlName="name">
+       <mat-label>Abkürzung:</mat-label>
+       <input formControlName="abbreviation">
+     </mat-card-content>
+  </mat-card>
+  <mat-card>
+   <mat-card-header>
+     <mat-card-title>Strecken des Netzes</mat-card-title>
+   </mat-card-header>
+    <mat-card-content>
+      <mat-list>
+
+      </mat-list>
+    </mat-card-content>
+  </mat-card>
+</form>

@@ -33,6 +33,7 @@ import { TimeTableYearCreateComponent } from './components/time-table-year/time-
 import { TimeTableYearFormComponent } from './components/time-table-year/time-table-year-form/time-table-year-form.component';
 import {AuthInterceptor} from "./helpers/auth.interceptor";
 import { StatisticComponent } from './components/statistic/statistic.component';
+import { RailNetworkFormComponent } from './components/rail-network-form/rail-network-form.component';
 
 @NgModule({
   declarations: [
@@ -49,7 +50,8 @@ import { StatisticComponent } from './components/statistic/statistic.component';
     TimeTableYearEditComponent,
     TimeTableYearCreateComponent,
     TimeTableYearFormComponent,
-    StatisticComponent
+    StatisticComponent,
+    RailNetworkFormComponent
   ],
     imports: [
         BrowserModule,

@@ -18,6 +18,7 @@ import {
 } from "./components/time-table-year/time-table-year-list/time-table-year-list.component";
 import {AuthGuard} from "./services/auth.guard";
 import {StatisticComponent} from "./components/statistic/statistic.component";
+import {RailNetworkFormComponent} from "./components/rail-network-form/rail-network-form.component";
 
 
 const routes: Routes = [
@@ -31,7 +32,8 @@ const routes: Routes = [
   { path: 'statistic', component: StatisticComponent, canActivate:[AuthGuard] },
   { path: 'time-table-year', component: TimeTableYearListComponent, canActivate:[AuthGuard]},
   { path: 'time-table-year/create', component: TimeTableYearCreateComponent, canActivate:[AuthGuard]},
-  { path: 'time-table-year/edit/:id', component: TimeTableYearEditComponent, canActivate:[AuthGuard] },
+  { path: 'time-table-year/edit/:id', component: TimeTableYearEditComponent, canActivate:[AuthGuard]},
+  { path: 'time-table-year/edit-rail-network/:id', component: RailNetworkFormComponent, canActivate:[AuthGuard]},
 ];
 
 @NgModule({
