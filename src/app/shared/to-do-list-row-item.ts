@@ -1,4 +1,5 @@
 export interface ToDoListRowItem {
+  id?: string
   group: string;
   name: string;
   deadline: Date;
@@ -8,6 +9,7 @@ export interface ToDoListRowItem {
 }
 
 export interface ToDoListItemMetaData {
+  id?: string
   isMilestoneItem: boolean;
   isTestMarkNeeded: boolean;
   isRelativeToStart: boolean;

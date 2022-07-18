@@ -4,7 +4,7 @@ import {RailNetworkService} from "../../services/rail-network.service";
 import {ActivatedRoute, Router} from "@angular/router";
 import {switchMap} from "rxjs";
 import {map} from "rxjs/operators";
-import {FormBuilder, FormGroup} from "@angular/forms";
+import {Form, FormArray, FormBuilder, FormGroup, Validators} from "@angular/forms";
 import {Track} from "../../shared/track";
 
 @Component({
@@ -15,6 +15,8 @@ import {Track} from "../../shared/track";
 export class RailNetworkFormComponent implements OnInit {
   railNetwork?: RailNetwork;
   railNetworkFormGroup: FormGroup;
+  trackFormGroup: FormGroup;
+  stationFormGroup: FormGroup;
 
   constructor(
     private railNetworkService: RailNetworkService,
@@ -25,8 +27,18 @@ export class RailNetworkFormComponent implements OnInit {
     this.railNetworkFormGroup = this.fb.group( {
       name:'',
       abbreviation:'',
-      tracks: this.buildTracksArray({})
-    })
+    });
+
+    this.trackFormGroup = this.fb.group({
+      name:'',
+      trackNumber:'',
+      positiveDirection: true,
+      startPoint: '',
+      endPoint: '',
+      crossStations: this.buildCrossStationsArray([''])
+    });
+
+    this.stationFormGroup
   }
 
   ngOnInit(): void {
@@ -45,9 +57,10 @@ export class RailNetworkFormComponent implements OnInit {
     this.railNetworkFormGroup.patchValue(rn);
   }
 
-  private buildTracksArray(values: Track) {
-    return this.fb.array(
-      []
-    )
+  private buildCrossStationsArray(values: string[]): FormArray {
+    return this.fb.array(values, Validators.required);
+  }
+  get tracks(): FormArray {
+    return this.railNetworkFormGroup.get('tracks') as FormArray;
   }
 }

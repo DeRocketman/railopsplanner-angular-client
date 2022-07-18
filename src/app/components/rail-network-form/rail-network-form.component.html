@@ -9,15 +9,38 @@
        <mat-label>Abkürzung:</mat-label>
        <input formControlName="abbreviation">
      </mat-card-content>
-  </mat-card>
-  <mat-card>
-   <mat-card-header>
-     <mat-card-title>Strecken des Netzes</mat-card-title>
-   </mat-card-header>
-    <mat-card-content>
-      <mat-list>
-
-      </mat-list>
-    </mat-card-content>
+    <mat-card-footer>
+      <button mat-fab class="safe-railnetwork-button" color="primary">
+        <mat-icon>check</mat-icon>
+      </button>
+      <button mat-fab class="safe-railnetwork-button">
+        <mat-icon>cancel</mat-icon>
+      </button>
+    </mat-card-footer>
   </mat-card>
 </form>
+<mat-card>
+  <mat-card-header>
+    <mat-card-title>Strecken des Netzes</mat-card-title>
+  </mat-card-header>
+  <mat-card-content>
+    <mat-list  class="track-list" *ngFor="let tGrp of railNetwork.trackGroups index as i">
+      <mat-list-item *ngIf="tGrp.tracks[0]" class="track-list-item">
+        <div>Startbahnhof: {{tGrp.tracks[0].startPoint.ds100}} Endbahnhof: {{tGrp.tracks[0].startPoint.ds100}}</div>
+        <div>
+          <button mat-fab class="edit-track-button" color="primary" routerLink="edit-track/{{tGrp.tracks[0].id}}">
+            <mat-icon>edit</mat-icon>
+          </button>
+        </div>
+      </mat-list-item>
+    </mat-list>
+    <hr>
+  </mat-card-content>
+  <mat-card-footer>
+    <button mat-fab class="add-track-button" color="primary" routerLink="create-track/" routerLinkActive="active">
+      <mat-icon>add</mat-icon>
+    </button>
+  </mat-card-footer>
+</mat-card>
+
+

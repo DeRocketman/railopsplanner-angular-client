@@ -34,6 +34,9 @@ import { TimeTableYearFormComponent } from './components/time-table-year/time-ta
 import {AuthInterceptor} from "./helpers/auth.interceptor";
 import { StatisticComponent } from './components/statistic/statistic.component';
 import { RailNetworkFormComponent } from './components/rail-network-form/rail-network-form.component';
+import { TrackCreateComponent } from './components/infrastructure/track-create/track-create.component';
+import { TrackEditComponent } from './components/infrastructure/track-edit/track-edit.component';
+import { TrackFormComponent } from './components/infrastructure/track-form/track-form.component';
 
 @NgModule({
   declarations: [
@@ -51,7 +54,10 @@ import { RailNetworkFormComponent } from './components/rail-network-form/rail-ne
     TimeTableYearCreateComponent,
     TimeTableYearFormComponent,
     StatisticComponent,
-    RailNetworkFormComponent
+    RailNetworkFormComponent,
+    TrackCreateComponent,
+    TrackEditComponent,
+    TrackFormComponent
   ],
     imports: [
         BrowserModule,
