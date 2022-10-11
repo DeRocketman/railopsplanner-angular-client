@@ -1,0 +1,73 @@
+<form novalidate [formGroup]="timeTableYearFormGroup" (ngSubmit)="submitForm(timeTableYearFormGroup.value)">
+    <mat-card>
+        <div>
+          <mat-card-title>Jahresfahrplan-Daten</mat-card-title>
+          <mat-label>Fahrplan-Bezeichnung:</mat-label>
+          <input formControlName="name">
+          <mat-label>Erster Verkehrstag:</mat-label>
+          <input type="date" name formControlName="firstDate" useValueAsName>
+          <mat-label>Letzter Verkehrstag:</mat-label>
+          <input type="date" formControlName="lastDate">
+        </div>
+    </mat-card>
+
+    <mat-card>
+        <mat-card-title>Netze</mat-card-title>
+        <div>
+            <mat-card-content formArrayName="railNetworks">
+              <div *ngFor="let r of railNetworks.controls; index as i" >
+                <div [formGroupName]="i">
+                  <mat-label>Netz-Bezeichnung:</mat-label>
+                  <input formControlName="name">
+                  <mat-label>Abkürzung:</mat-label>
+                  <input formControlName="abbreviation">
+                  <button type="button" mat-fab class="delete" color="warn" (click)="removeRailNetwork(i)">
+                    <mat-icon>delete</mat-icon>
+                  </button>
+                </div>
+              </div>
+            </mat-card-content>
+        </div>
+        <mat-card-footer>
+            <button type="button" mat-fab class="new network button" color="primary" (click)="addRailNetworkControl()">
+        <mat-icon>add</mat-icon>
+      </button>
+        </mat-card-footer>
+    </mat-card>
+
+    <mat-card formArrayName="planningPeriods">
+        <mat-card-title>Planungs-Perioden</mat-card-title>
+        <mat-card-content>
+            <div *ngFor= "let p of planningPeriods.controls; index as j">
+                <div [formGroupName]="j">
+                  <mat-label>Periodenbezeichnung:</mat-label>
+                  <input formControlName="name">
+                  <mat-label>Periodenbeginn:</mat-label>
+                  <input type=date formControlName="start">
+                  <mat-label>Periodenende</mat-label>
+                  <input type=date formControlName="end">
+                  <button type="button" mat-fab class="delete" color="warn" (click)="removePlanningPeriod(j)">
+                    <mat-icon>delete</mat-icon>
+                  </button>
+                </div>
+            </div>
+        </mat-card-content>
+        <mat-card-footer>
+            <button type="button" mat-fab class="new period button" color="primary" (click)="addPlanningPeriodsControl()">
+              <mat-icon>add</mat-icon>
+            </button>
+        </mat-card-footer>
+    </mat-card>
+    <div>
+      <button mat-fab type="submit" color="primary" [disabled]="timeTableYearFormGroup.invalid">
+        <mat-icon>check</mat-icon>
+      </button>
+      <button mat-fab type="reset" color="accent">
+        <mat-icon>cancel</mat-icon>
+      </button>
+    </div>
+  <div>
+    <mat-label>Oder RailML einlesen</mat-label>
+    <input type="file" (change)="loadRailmlFile($event)">
+  </div>
+</form>

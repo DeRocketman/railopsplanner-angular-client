@@ -1,0 +1,15 @@
+<div>
+  <rop-time-table-year-list-item class="time-table-item"
+  *ngFor="let tty of timeTableYearList"
+  [timeTableYear]="tty"></rop-time-table-year-list-item>
+
+  <div *ngIf="!timeTableYearList" class="ui active dimmer">
+    <div class="ui large text loader">Daten werden geladen...</div>
+  </div>
+
+  <p *ngIf="!timeTableYearList && !timeTableYearList.length">Noch keine Jahresfahrpläne angelegt</p>
+</div>
+
+<button mat-fab class="fab" routerLink="create" routerLinkActive="active" color="primary">
+  <mat-icon>add</mat-icon>
+</button>

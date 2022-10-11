@@ -1,0 +1,25 @@
+<ng-container *ngIf="track">
+  <mat-card>
+    <mat-card-header>
+      <mat-card-title>Strecke {{track.name}}</mat-card-title>
+      <mat-card-subtitle>von {{track.startPoint.name}} nach {{track.endPoint.name}} {{track.startPoint.currentNumber}} und {{track.endPoint.currentNumber}}</mat-card-subtitle>
+      <mat-card-subtitle>Streckennummer: {{track.trackNumber}} Linien:{{track.lineNumber}}</mat-card-subtitle>
+    </mat-card-header>
+    <mat-card-content>
+      <mat-list>
+        <mat-list-item *ngFor="let st of track.crossStations">
+          <div>Zwischenhalt:{{st.name}} ({{st.rl100}}) km-Wert:{{st.positionValue}} Umstiegszeit:{{st.transferTime}}</div>
+        </mat-list-item>
+      </mat-list>
+      <mat-divider></mat-divider>
+    </mat-card-content>
+    <mat-card-footer>
+      <button mat-fab class="mat-fab-edit-button" routerLink="track-edit/{{track.id}}" routerLinkActive="active">
+        <mat-icon>edit</mat-icon>
+      </button>
+      <button mat-fab class="track-delete-button" (click)="deleteTrack()" color="warn">
+        <mat-icon>delete</mat-icon>
+      </button>
+    </mat-card-footer>
+  </mat-card>
+</ng-container>

@@ -1,0 +1,51 @@
+.railNetworkListItem {
+  display: grid;
+  grid-template-columns: auto auto auto;
+}
+
+.railNetworkListData {
+  width: 600px;
+}
+
+.railNetworkListButton {
+  margin: auto;
+}
+
+.rail-network-edit {
+  background-color: #163C4B;
+}
+.mat-card-header {
+  margin: auto;
+  width: 100%;
+  text-align: center;
+}
+
+.mat-card-title {
+  width: 100%;
+  font-size: 30px;
+  color: rgb(67,80,175);
+}
+
+.mat-card-subtitle {
+  font-size: 14px;
+}
+
+.mat-list-item {
+  margin: 0;
+}
+
+.mat-card-footer {
+  margin: 14px;
+}
+
+.edit {
+  margin-right: 625px;
+}
+
+.mat-card {
+  margin-bottom: 24px;
+}
+
+.mat-fab-edit-button {
+  background-color: #163C4B;
+}

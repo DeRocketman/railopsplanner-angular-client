@@ -1,0 +1,322 @@
+<form class="ui form"
+      [formGroup]="measureFormGroup"
+      (ngSubmit)="submitMeasureForm(measureFormGroup.value)">
+  <mat-card>
+    <mat-card-header>
+      <mat-card-title>Grunddaten</mat-card-title>
+    </mat-card-header>
+    <mat-card-content>
+     <div>
+       <div>
+         <mat-form-field appearance="outline">
+           <mat-label>Bezeichnung:</mat-label>
+           <input matInput formControlName="name">
+         </mat-form-field>
+         <mat-form-field  appearance="outline" formGroupName="railNetwork">
+           <mat-label>Netz:</mat-label>
+           <mat-select formControlName="id">
+             <mat-option *ngFor="let network of railNetworks" [value]="network.id">
+               {{network.abbreviation}}
+             </mat-option>
+           </mat-select>
+         </mat-form-field>
+       </div>
+       <div>
+         <mat-form-field appearance="outline">
+           <mat-label>Beginn:</mat-label>
+           <input type="date" matInput formControlName="start">
+         </mat-form-field>
+         <mat-form-field appearance="outline">
+           <mat-label>Ende:</mat-label>
+           <input type="date" matInput formControlName="end">
+         </mat-form-field>
+       </div>
+       <div>
+         <mat-form-field  appearance="outline" formGroupName="startPoint">
+           <mat-label>Von ZMST:</mat-label>
+           <mat-select formControlName="id">
+             <mat-option *ngFor="let station of stations" [value]="station.id">
+               {{station.rl100}}
+             </mat-option>
+           </mat-select>
+         </mat-form-field>
+         <mat-form-field  appearance="outline" formGroupName="endPoint">
+           <mat-label>Bis ZMST:</mat-label>
+           <mat-select formControlName="id">
+             <mat-option *ngFor="let station of stations" [value]="station.id">
+               {{station.rl100}}
+             </mat-option>
+           </mat-select>
+         </mat-form-field>
+       </div>
+       <div>
+         <mat-form-field appearance="outline">
+           <mat-label>Art d. Maßnahme</mat-label>
+           <mat-select formControlName="measureKind">
+             <mat-option value="Baumaßnahme">Baumaßnahme</mat-option>
+             <mat-option value="APS-Maßnahme">APS-Maßnahme</mat-option>
+             <mat-option value="Sonderverkehr">Sonderverkehr</mat-option>
+           </mat-select>
+         </mat-form-field>
+         <mat-form-field appearance="outline">
+           <mat-label>KIGBau-Nummer</mat-label>
+           <input matInput formControlName="kigbauNumber">
+         </mat-form-field>
+       </div>
+       <div>
+         <mat-form-field appearance="outline">
+           <mat-label>Auswirkungen generell:</mat-label>
+           <input matInput formControlName="effect">
+         </mat-form-field>
+         <mat-form-field appearance="outline">
+           <mat-label>Auswirkungen f. Fahrgäste:</mat-label>
+           <input matInput formControlName="effect">
+         </mat-form-field>
+       </div>
+       <div>
+         <mat-label>Oder XML einlesen</mat-label>
+         <input type="file" (change)="loadXmlFile($event)">
+       </div>
+     </div>
+    </mat-card-content>
+  </mat-card>
+
+  <mat-card formArrayName="reasons">
+    <mat-card-header>
+      <mat-card-title>Maßnahmedetails</mat-card-title>
+    </mat-card-header>
+    <mat-card-content>
+      <mat-list *ngFor="let m of reasons.controls; index as l">
+        <mat-list-item [formGroupName]="l">
+          <mat-form-field appearance="outline">
+            <mat-label>Beginn</mat-label>
+            <input type="date" matInput formControlName="start">
+          </mat-form-field>
+          <mat-form-field appearance="outline">
+            <mat-label>Beginn</mat-label>
+            <input type="date" matInput formControlName="end">
+          </mat-form-field>
+          <mat-form-field  appearance="outline" formGroupName="startPoint">
+            <mat-label>Von ZMST:</mat-label>
+            <mat-select formControlName="id">
+              <mat-option *ngFor="let station of stations" [value]="station.id">
+                {{station.rl100}}
+              </mat-option>
+            </mat-select>
+          </mat-form-field>
+          <mat-form-field  appearance="outline" formGroupName="endPoint">
+            <mat-label>Bis ZMST:</mat-label>
+            <mat-select formControlName="id">
+              <mat-option *ngFor="let station of stations" [value]="station.id">
+                {{station.rl100}}
+              </mat-option>
+            </mat-select>
+          </mat-form-field>
+          <mat-form-field appearance="outline">
+            <mat-label>Grund d. Maßnahme</mat-label>
+            <input matInput formControlName="reason">
+          </mat-form-field>
+          <mat-form-field appearance="outline">
+            <mat-label>Betriebsweise</mat-label>
+            <input matInput formControlName="operatingMode">
+          </mat-form-field>
+          <mat-form-field appearance="outline">
+            <mat-label>Unterbrochen?</mat-label>
+            <mat-select formControlName="disturbed">
+              <mat-option [value]="true">Ja</mat-option>
+              <mat-option [value]="false">Nein</mat-option>
+            </mat-select>
+          </mat-form-field>
+          <button type="button" mat-button (click)="removeReason(l)">
+            <mat-icon>delete</mat-icon>
+          </button>
+        </mat-list-item>
+      </mat-list>
+      <button type="button" mat-fab (click)="addReason()" color="primary">
+        <mat-icon>add</mat-icon>
+      </button>
+    </mat-card-content>
+  </mat-card>
+
+  <mat-card>
+    <mat-card-header>
+      <mat-card-title>Auswirkungen</mat-card-title>
+    </mat-card-header>
+    <mat-card-content>
+      <div formArrayName="trainFailures">
+        <h3>Ausfälle</h3>
+        <mat-list class="mat-failure-list" *ngFor="let t of trainFailures.controls; index as m">
+          <mat-list-item [formGroupName]="m">
+            <mat-form-field appearance="outline">
+              <mat-label>Verkehrstag</mat-label>
+              <input type="date" matInput formControlName="trafficDay">
+            </mat-form-field>
+            <mat-form-field appearance="outline">
+              <mat-label>Linie</mat-label>
+              <input matInput formControlName="line">
+            </mat-form-field>
+            <mat-form-field appearance="outline">
+              <mat-label>Zug-Art</mat-label>
+              <input matInput formControlName="trainType">
+            </mat-form-field>
+            <mat-form-field appearance="outline">
+              <mat-label>Zugnummer</mat-label>
+              <input matInput formControlName="trainNumber">
+            </mat-form-field>
+            <mat-form-field  appearance="outline" formGroupName="startPoint">
+              <mat-label>Startbahnhof:</mat-label>
+              <mat-select formControlName="id">
+                <mat-option *ngFor="let station of stations" [value]="station.id">
+                  {{station.rl100}}
+                </mat-option>
+              </mat-select>
+            </mat-form-field>
+            <mat-form-field  appearance="outline" formGroupName="endPoint">
+              <mat-label>Zielbahnhof:</mat-label>
+              <mat-select formControlName="id">
+                <mat-option *ngFor="let station of stations" [value]="station.id">
+                  {{station.rl100}}
+                </mat-option>
+              </mat-select>
+            </mat-form-field>
+            <mat-form-field  appearance="outline" formGroupName="failureFrom">
+              <mat-label>Ausfall von:</mat-label>
+              <mat-select formControlName="id">
+                <mat-option *ngFor="let station of stations" [value]="station.id">
+                  {{station.rl100}}
+                </mat-option>
+              </mat-select>
+            </mat-form-field>
+            <mat-form-field  appearance="outline" formGroupName="failureTo">
+              <mat-label>Zielbahnhof:</mat-label>
+              <mat-select formControlName="id">
+                <mat-option *ngFor="let station of stations" [value]="station.id">
+                  {{station.rl100}}
+                </mat-option>
+              </mat-select>
+            </mat-form-field>
+            <button type="button" mat-button (click)="removeTrainFailure(m)">
+              <mat-icon>delete</mat-icon>
+            </button>
+          </mat-list-item>
+        </mat-list>
+        <button type="button" mat-fab (click)="addTrainFailure()" color="primary">
+          <mat-icon>add</mat-icon>
+        </button>
+      </div>
+
+      <hr>
+
+      <div formArrayName="scheduleDeviations">
+        <h3>Fahrplanabweichungen</h3>
+        <mat-list class="mat-failure-list" *ngFor="let t of scheduleDeviations.controls; index as n">
+          <mat-list-item [formGroupName]="n" class="mat-item-schedule-deviation">
+            <mat-form-field appearance="outline">
+              <mat-label>Verkehrstag</mat-label>
+              <input type="date" matInput formControlName="trafficDay">
+            </mat-form-field>
+            <mat-form-field appearance="outline">
+              <mat-label>Linie</mat-label>
+              <input matInput formControlName="line">
+            </mat-form-field>
+            <mat-form-field appearance="outline">
+              <mat-label>Zug-Art</mat-label>
+              <input matInput formControlName="trainType">
+            </mat-form-field>
+            <mat-form-field appearance="outline">
+              <mat-label>Zugnummer</mat-label>
+              <input matInput formControlName="trainNumber">
+            </mat-form-field>
+            <mat-form-field  appearance="outline" formGroupName="startPoint">
+              <mat-label>Startbahnhof:</mat-label>
+              <mat-select formControlName="id">
+                <mat-option *ngFor="let station of stations" [value]="station.id">
+                  {{station.rl100}}
+                </mat-option>
+              </mat-select>
+            </mat-form-field>
+            <mat-form-field  appearance="outline" formGroupName="endPoint">
+              <mat-label>Zielbahnhof:</mat-label>
+              <mat-select formControlName="id">
+                <mat-option *ngFor="let station of stations" [value]="station.id">
+                  {{station.rl100}}
+                </mat-option>
+              </mat-select>
+            </mat-form-field>
+            <mat-form-field appearance="outline">
+              <mat-label>Abweichung-Typ</mat-label>
+              <mat-select formControlName="deviationType">
+                <mat-option value="Vorplan">Vorplan</mat-option>
+                <mat-option value="Verspätung">Verspätung</mat-option>
+              </mat-select>
+            </mat-form-field>
+            <mat-form-field appearance="outline" formGroupName="deviationStartPoint">
+              <mat-label>Abweichung von:</mat-label>
+              <mat-select formControlName="id">
+                <mat-option *ngFor="let station of stations" [value]="station.id">
+                  {{station.rl100}}
+                </mat-option>
+              </mat-select>
+            </mat-form-field>
+            <mat-form-field appearance="outline">
+              <mat-label>Abweichung in Minuten</mat-label>
+              <input type="number" matInput formControlName="time">
+            </mat-form-field>
+            <button type="button" mat-button (click)="removeSchuleDeviation(n)">
+              <mat-icon>delete</mat-icon>
+            </button>
+          </mat-list-item>
+        </mat-list>
+        <button type="button" mat-fab (click)="addScheduleDeviation()" color="primary">
+          <mat-icon>add</mat-icon>
+        </button>
+      </div>
+    </mat-card-content>
+  </mat-card>
+
+
+  <mat-card formArrayName="agents">
+    <mat-card-header>
+      <mat-card-title>Kontaktdaten</mat-card-title>
+    </mat-card-header>
+    <mat-card-content>
+      <mat-list *ngFor="let ag of agents.controls; index as t">
+        <mat-list-item [formGroupName]="t">
+          <mat-form-field>
+            <mat-label>E-Mail:</mat-label>
+            <input matInput formControlName="email">
+          </mat-form-field>
+          <mat-form-field>
+            <mat-label>Vorname:</mat-label>
+            <input matInput formControlName="firstName">
+          </mat-form-field>
+          <mat-form-field>
+            <mat-label>Nachname:</mat-label>
+            <input matInput formControlName="lastName">
+          </mat-form-field>
+          <mat-form-field>
+            <mat-label>Initialien:</mat-label>
+            <input matInput formControlName="initials">
+          </mat-form-field>
+          <mat-form-field>
+            <mat-label>Tel:</mat-label>
+            <input matInput formControlName="phone">
+          </mat-form-field>
+          <mat-form-field>
+            <mat-label>Fax:</mat-label>
+            <input matInput formControlName="fax">
+          </mat-form-field>
+          <button type="button" mat-button (click)="removeAgent(t)">
+            <mat-icon>delete</mat-icon>
+          </button>
+        </mat-list-item>
+        <button type="button" mat-icon-button (click)="addAgent()">
+          <mat-icon>add</mat-icon>
+        </button>
+      </mat-list>
+    </mat-card-content>
+  </mat-card>
+  <button type="submit" mat-fab [disabled]="measureFormGroup.invalid">
+    <mat-icon>save</mat-icon>
+  </button>
+</form>

@@ -1,0 +1,124 @@
+<mat-card [formGroup]="trackFormGroup" (ngSubmit)="submitTrackForm(trackFormGroup.value)">
+  <form>
+    <mat-card-header>
+    </mat-card-header>
+    <mat-card-content>
+      <div>
+        <mat-form-field appearance="fill">
+          <mat-label>Streckennummer:</mat-label>
+          <input matInput formControlName="trackNumber">
+        </mat-form-field>
+      </div>
+      <div>
+        <mat-form-field appearance="fill">
+          <mat-label>Linie:</mat-label>
+          <input matInput formControlName="lineNumber">
+        </mat-form-field>
+      </div>
+      <div formGroupName="startPoint">
+        <mat-form-field  appearance="fill">
+          <mat-label>Startbahnhof:</mat-label>
+          <mat-select formControlName="id">
+            <mat-option *ngFor="let station of stations" [value]="station.id">
+              {{station.rl100}}
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
+        <mat-form-field  appearance="fill">
+          <mat-label>KM-Wert</mat-label>
+          <input matInput type="number" formControlName="positionValue">
+        </mat-form-field>
+        <mat-form-field  appearance="fill">
+          <mat-label>Umstiegszeit</mat-label>
+          <input matInput type="number" formControlName="transferTime">
+        </mat-form-field>
+        <mat-form-field  appearance="fill">
+          <mat-label>SEV Fahrtzeit</mat-label>
+          <input matInput type="number" formControlName="railReplacementDrivingTime">
+        </mat-form-field>
+        <mat-form-field  appearance="fill">
+          <mat-label>SEV Halt?</mat-label>
+          <mat-select formControlName="railReplacementStop">
+            <mat-option [value]="true">Ja</mat-option>
+            <mat-option [value]="false">Nein</mat-option>
+          </mat-select>
+        </mat-form-field>
+      </div>
+      <div formArrayName="crossStations">
+        <mat-list *ngFor="let c of crossStations.controls; index as i">
+          <mat-list-item [formGroupName]="i">
+            <mat-form-field>
+              <mat-label>Zwischenhalt:</mat-label>
+              <mat-select formControlName="id">
+                <mat-option *ngFor="let station of stations" [value]="station.id">
+                  {{station.rl100}}
+                </mat-option>
+              </mat-select>
+            </mat-form-field>
+            <mat-form-field>
+              <mat-label>KM-Wert</mat-label>
+              <input matInput type="number" formControlName="positionValue">
+            </mat-form-field>
+            <mat-form-field>
+              <mat-label>Umstiegszeit</mat-label>
+              <input matInput type="number" formControlName="transferTime">
+            </mat-form-field>
+            <mat-form-field>
+              <mat-label>SEV Fahrtzeit</mat-label>
+              <input matInput type="number" formControlName="railReplacementDrivingTime">
+            </mat-form-field>
+            <mat-form-field>
+              <mat-label>SEV Halt?</mat-label>
+              <mat-select formControlName="railReplacementStop">
+                <mat-option [value]="true">Ja</mat-option>
+                <mat-option [value]="false">Nein</mat-option>
+              </mat-select>
+            </mat-form-field>
+            <button mat-button (click)="removeCrossStation(i)" type="button">
+              <mat-icon>delete</mat-icon>
+            </button>
+          </mat-list-item>
+        </mat-list>
+        <button mat-button (click)="addCrossStation()" type="button">
+          <mat-icon>add</mat-icon>
+        </button>
+      </div>
+      <div formGroupName="endPoint">
+        <mat-form-field  appearance="fill">
+          <mat-label>Endbahnhof:</mat-label>
+          <mat-select formControlName="id">
+            <mat-option *ngFor="let station of stations" [value]="station.id">
+              {{station.rl100}}
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
+        <mat-form-field  appearance="fill">
+          <mat-label>KM-Wert</mat-label>
+          <input matInput type="number" formControlName="positionValue">
+        </mat-form-field>
+        <mat-form-field  appearance="fill">
+          <mat-label>Umstiegszeit</mat-label>
+          <input matInput type="number" formControlName="transferTime">
+        </mat-form-field>
+        <mat-form-field  appearance="fill">
+          <mat-label>SEV Fahrtzeit</mat-label>
+          <input matInput type="number" formControlName="railReplacementDrivingTime">
+        </mat-form-field>
+        <mat-form-field  appearance="fill">
+          <mat-label>SEV Halt?</mat-label>
+          <mat-select formControlName="railReplacementStop">
+            <mat-option [value]="true">Ja</mat-option>
+            <mat-option [value]="false">Nein</mat-option>
+          </mat-select>
+        </mat-form-field>
+      </div>
+    </mat-card-content>
+    <mat-card-footer>
+      <button mat-fab type="submit" [disabled]="trackFormGroup.invalid">
+        <mat-icon>add</mat-icon>
+      </button>
+    </mat-card-footer>
+  </form>
+</mat-card>
+
+

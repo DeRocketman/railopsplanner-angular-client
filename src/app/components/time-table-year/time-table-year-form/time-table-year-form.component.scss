@@ -1,0 +1,28 @@
+div {
+  margin: auto;
+  max-width: 800px;
+}
+
+.mat-card{
+  max-width: 800px;
+  margin: auto auto 25px;
+}
+
+.time-table-item + .time-table-item {
+  margin-top: 25px;
+}
+
+.button {
+  margin-left: 15px;
+  margin-bottom: 10px;
+}
+.fab {
+  position: fixed;
+  right: 16px;
+  bottom: 16px;
+}
+
+.delete {
+  margin-left: 15px;
+  margin-bottom: 10px;
+}

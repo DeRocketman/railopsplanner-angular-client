@@ -1,0 +1,53 @@
+.sidenav-content {
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+}
+
+.toolbar {
+  position: relative;
+  z-index: 1;
+  flex-grow: 0;
+  flex-shrink: 0;
+}
+
+.content {
+  flex-grow: 1;
+  flex-shrink: 1;
+  overflow: auto;
+  padding: 24px;
+}
+
+.sidenav {
+  width: 65%;
+  min-width: 250px;
+  max-width: 300px;
+}
+
+html,
+body {
+  height: 100%;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  min-height: 100vh;
+  background-color: #e5e5e5;
+  font-family: 'Roboto', sans-serif;
+}
+
+.app-header {
+  justify-content: space-between;
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 2;
+  box-shadow: 0 3px 5px -1px rgba(0, 0, 0, .2), 0 6px 10px 0 rgba(0, 0, 0, .14), 0 1px 18px 0 rgba(0, 0, 0, .12);
+}
+
+.mat-fab-edit-button {
+  background-color: #163C4B;
+}
+

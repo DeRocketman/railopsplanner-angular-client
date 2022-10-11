@@ -1,0 +1,9 @@
+
+<h1>Jahresfahrplan bearbeiten</h1>
+
+<rop-time-table-year-form
+  *ngIf="timeTableYear"
+  (submitTimeTableYear)="updateTimeTableYear($event)"
+  [timeTableYear]="timeTableYear"
+  ></rop-time-table-year-form>
+

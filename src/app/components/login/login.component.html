@@ -1,0 +1,35 @@
+<div class="mat-card-wrapper">
+  <form [formGroup]="signinForm" (ngSubmit)="loginUser()">
+    <mat-card>
+      <mat-card-header>
+        <mat-card-title>Login</mat-card-title>
+      </mat-card-header>
+      <mat-card-content>
+        <mat-form-field appearance="outline">
+          <mat-label>Email</mat-label>
+          <input type="email" matInput formControlName="email" [errorStateMatcher]="matcher" placeholder="dirk.stricker@nordbahn.de">
+          <mat-error *ngIf="signinForm.get('email').hasError('email') && !signinForm.get('email').hasError('required')">
+            Bitte eine gültige Email eingeben
+          </mat-error>
+          <mat-error *ngIf="signinForm.get('email').hasError('required')">
+            Email ist <strong>notwendig</strong>
+          </mat-error>
+        </mat-form-field>
+        <mat-form-field appearance="outline">
+          <mat-label>Passwort</mat-label>
+          <input matInput [type]="pwHide ? 'password' : 'text'" formControlName="pw" [errorStateMatcher]="matcher">
+          <button mat-icon-button matSuffix (click)="pwHide = !pwHide" [attr.aria-label]="'Passwort verbergen'" [attr.aria-pressed]="pwHide">
+            <mat-icon>{{pwHide ? 'visibility_off' : 'visibility'}}</mat-icon>
+          </button>
+          <mat-error *ngIf="signinForm.get('pw').hasError('password') && !signinForm.get('pw').hasError('required')">
+            Bitte korrektes Passwort eingeben
+          </mat-error>
+          <mat-error *ngIf="signinForm.get('pw').hasError('required')">
+            Passwort ist <strong>notwendig</strong>
+          </mat-error>
+        </mat-form-field>
+        <button type="submit" mat-raised-button color="primary">Login</button>
+      </mat-card-content>
+    </mat-card>
+  </form>
+</div>

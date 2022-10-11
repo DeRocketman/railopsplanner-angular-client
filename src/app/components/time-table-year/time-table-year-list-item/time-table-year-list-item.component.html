@@ -1,0 +1,38 @@
+<ng-container *ngIf="timeTableYear">
+    <mat-card>
+        <mat-card-header>
+            <mat-card-title class="card-title">Fahrplanjahr {{ timeTableYear.name }}</mat-card-title>
+            <mat-card-subtitle>Gültig vom {{ timeTableYear.firstDate | date: 'dd.MM.yyyy' }} bis zum {{ timeTableYear.lastDate | date: 'dd.MM.yyyy' }}</mat-card-subtitle>
+        </mat-card-header>
+        <mat-card-content>
+            <mat-list>
+              <mat-list-item><b>Anzahl der Netze: </b>{{ timeTableYear.railNetworks.length }}</mat-list-item>
+              <mat-list-item>Anzahl der Planungsperioden: {{ timeTableYear.planningPeriods.length }}</mat-list-item>
+              <hr>
+            </mat-list>
+            <mat-list *ngFor="let railNetwork of timeTableYear.railNetworks">
+              <div class="railNetworkListItem">
+                  <div class="railNetworkListData">
+                    <mat-list-item> <b>{{ railNetwork.name }} ({{railNetwork.abbreviation}}) </b></mat-list-item>
+                    <mat-list-item *ngIf="railNetwork.measureList">Anzahl der Maßnahmen: {{ railNetwork.measureList.length }} </mat-list-item>
+                    <mat-list-item *ngIf="!railNetwork.measureList">Anzahl der Maßnahmen: 0 </mat-list-item>
+                  </div>
+                  <div class="railNetworkListButton">
+                    <button mat-fab class="rail-network-edit" routerLink="edit-rail-network/{{railNetwork.id}}" routerLinkActive="active">
+                      <mat-icon>edit</mat-icon>
+                    </button>
+                  </div>
+              </div>
+              <hr>
+            </mat-list>
+        </mat-card-content>
+        <mat-card-footer>
+          <button mat-fab class="mat-fab-edit-button edit" routerLink="edit/{{timeTableYear.id}}" routerLinkActive="active">
+            <mat-icon>edit</mat-icon>
+          </button>
+          <button mat-fab class="delete" color="warn" (click)="removeItem()" >
+            <mat-icon>delete</mat-icon>
+          </button>
+        </mat-card-footer>
+    </mat-card>
+</ng-container>

@@ -1,0 +1,52 @@
+<h1>Infrastruktur</h1>
+<mat-card>
+  <div>
+    <div>
+      <rop-track-list-item *ngFor="let t of tracks" [track]="t"></rop-track-list-item>
+
+      <div *ngIf="!tracks" class="ui active dimmer">
+        <div class="ui large text loader">Daten werden geladen...</div>
+      </div>
+
+      <p *ngIf="!tracks.length">Noch keine Strecken angelegt</p>
+    </div>
+
+    <button mat-fab routerLink="create/track" routerLinkActive="active">
+      <mat-icon>add</mat-icon>
+    </button>
+  </div>
+</mat-card>
+<mat-card>
+  <mat-card-header>
+    <mat-card-title>Bahnhöfe/Haltepunkte</mat-card-title>
+  </mat-card-header>
+  <mat-card-content>
+    <table>
+      <mat-table [dataSource]="stations" class="mat-elevation-z8">
+        <ng-container matColumnDef="name">
+          <th mat-header-cell *matHeaderCellDef matSort>Name</th>
+          <td mat-cell *matCellDef="let element">{{element.name}}</td>
+        </ng-container>
+        <ng-container matColumnDef="rl100">
+          <th mat-header-cell *matHeaderCellDef>RL100</th>
+          <td mat-cell *matCellDef="let element">{{element.rl100}}</td>
+        </ng-container>
+
+        <ng-container matColumnDef="stationType">
+          <th mat-header-cell *matHeaderCellDef>Stations-Typ</th>
+          <td mat-cell *matCellDef="let element">{{element.stationType}}</td>
+        </ng-container>
+
+        <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+        <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+      </mat-table>
+    </table>
+    <button mat-fab routerLink="create/station"  routerLinkActive="active" color="primary">
+      <mat-icon>add</mat-icon>
+    </button>
+  </mat-card-content>
+</mat-card>
+
+
+
+

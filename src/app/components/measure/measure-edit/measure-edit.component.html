@@ -1,0 +1,19 @@
+<h1>Maßnahme bearbeiten</h1>
+
+<rop-measure-form
+  *ngIf="measure && formActive"
+  (submitMeasure)="updateMeasure($event)"
+  [measureToEdit]="measure"
+></rop-measure-form>
+
+<mat-card *ngIf="measure">
+  <mat-card-title>Maßnahme: {{measure.name}}</mat-card-title>
+  <mat-card-subtitle>
+    Zwischen {{measure.startPoint.name}} und {{measure.endPoint.name}}
+    <br>Beginnt am {{measure.start | date: 'dd.MM.yyyy'}} endet am {{measure.end | date: 'dd.MM.yyyy'}}
+  </mat-card-subtitle>
+  <mat-card-content>
+
+  </mat-card-content>
+
+</mat-card>
