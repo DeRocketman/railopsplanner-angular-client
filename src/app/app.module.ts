@@ -47,6 +47,7 @@ import {MatSortModule} from "@angular/material/sort";
 import {MatCheckboxModule} from "@angular/material/checkbox";
 import { MeasureCreateComponent } from './components/measure/measure-create/measure-create.component';
 import { MeasureEditComponent } from './components/measure/measure-edit/measure-edit.component';
+import { SignupComponent } from './components/signup/signup.component';
 
 @NgModule({
   declarations: [
@@ -75,7 +76,8 @@ import { MeasureEditComponent } from './components/measure/measure-edit/measure-
     TrackListItemComponent,
     StationListItemComponent,
     MeasureCreateComponent,
-    MeasureEditComponent
+    MeasureEditComponent,
+    SignupComponent
   ],
     imports: [
         BrowserModule,

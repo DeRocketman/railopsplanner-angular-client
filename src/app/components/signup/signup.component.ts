@@ -5,21 +5,20 @@ import {AuthService} from "../../services/auth.service";
 import {Router} from "@angular/router";
 import {TokenStorageService} from "../../services/token-storage.service";
 
-export class LoginErrorStateMatcher implements ErrorStateMatcher {
+export class SignupErrorStateMatcher implements ErrorStateMatcher {
   isErrorState(control: FormControl | null, form: FormGroupDirective | NgForm | null): boolean {
     const isSubmitted = form && form.submitted;
     return !!(control && control.invalid && (control.dirty || control.touched || isSubmitted));
   }
 }
-
 @Component({
-  selector: 'rop-login',
-  templateUrl: './login.component.html',
-  styleUrls: ['./login.component.scss']
+  selector: 'rop-signup',
+  templateUrl: './signup.component.html',
+  styleUrls: ['./signup.component.scss']
 })
-export class LoginComponent implements OnInit {
-  signinForm: FormGroup;
-  matcher = new LoginErrorStateMatcher();
+export class SignupComponent implements OnInit {
+  signupForm: FormGroup;
+  matcher = new SignupErrorStateMatcher();
   pwHide = true;
 
   constructor(
@@ -28,21 +27,20 @@ export class LoginComponent implements OnInit {
     private router: Router,
     private tokenService: TokenStorageService,
   ) {
-    this.signinForm = this.fb.group({
+    this.signupForm = this.fb.group({
       email: new FormControl('', [Validators.required, Validators.email]),
-      pw: new FormControl('',[Validators.required])
+      pw: new FormControl('', [Validators.required]),
+      firstName: new FormControl(''),
+      name: new FormControl(''),
     });
   }
 
   ngOnInit(): void {
   }
 
-  loginUser() {
-    let email = this.signinForm?.get("email")?.value;
-    let pw = this.signinForm?.get("pw")?.value;
-    this.authService.signin(email, pw).subscribe((res) => {
-      this.tokenService.saveToken(res);
-      this.router.navigate(['home']);
-    });
+  signupUser() {
+
+
   }
+
 }

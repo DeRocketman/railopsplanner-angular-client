@@ -1,12 +1,9 @@
 import {Component, OnInit} from '@angular/core';
-import {ActivatedRoute, Router} from "@angular/router";
 import {TrackService} from "../../../services/track.service";
 import {TrackGroupService} from "../../../services/track-group.service";
 import {StationService} from "../../../services/station.service";
 import {Track} from "../../../shared/track";
 import {TrackGroup} from "../../../shared/track-group";
-import {Station} from "../../../shared/station";
-import {TrackStationService} from "../../../services/track-station.service";
 
 
 @Component({
@@ -19,8 +16,6 @@ export class TrackCreateComponent implements OnInit {
     private stationService: StationService,
     private trackService: TrackService,
     private trackGroupService: TrackGroupService,
-    private route: ActivatedRoute,
-    private router: Router
   ) { }
 
   ngOnInit(): void {
@@ -30,8 +25,8 @@ export class TrackCreateComponent implements OnInit {
   createInfrastructure(track: Track) {
     let oppositeDirectionTrack: Track = this.buildOppositeTrack(track);
     let trackGroup: TrackGroup = {id:'to_create', name: track.name, tracks: []};
-    trackGroup.tracks.push(track);
-    trackGroup.tracks.push(oppositeDirectionTrack)
+    trackGroup?.tracks?.push(track);
+    trackGroup?.tracks?.push(oppositeDirectionTrack)
     this.trackGroupService.create(trackGroup).subscribe((res) => {
       console.log("response create track Group:" + res);
     });
@@ -42,7 +37,7 @@ export class TrackCreateComponent implements OnInit {
       ...track
     };
     oppositeTrack.positiveDirection = false;
-    oppositeTrack.name = oppositeTrack.endPoint.rl100+'-'+oppositeTrack.startPoint.rl100;
+    oppositeTrack.name = oppositeTrack?.endPoint?.rl100+'-'+oppositeTrack?.startPoint?.rl100;
     return  oppositeTrack;
   }
 }

@@ -24,11 +24,13 @@ import {InfrastructureComponent} from "./components/infrastructure/infrastructur
 import {StationCreateComponent} from "./components/infrastructure/station-create/station-create.component";
 import {MeasureEditComponent} from "./components/measure/measure-edit/measure-edit.component";
 import {MeasureCreateComponent} from "./components/measure/measure-create/measure-create.component";
+import {SignupComponent} from "./components/signup/signup.component";
 
 
 const routes: Routes = [
   { path: '', redirectTo: 'login', pathMatch: 'full'},
   { path: 'login', component: LoginComponent },
+  { path: 'signup', component: SignupComponent },
   { path: 'home', component: HomeComponent, canActivate:[AuthGuard] },
   { path: 'measure-plan', component: MeasurePlanComponent, canActivate:[AuthGuard] },
   { path: 'measure-plan/create', component: MeasureCreateComponent, canActivate:[AuthGuard] },

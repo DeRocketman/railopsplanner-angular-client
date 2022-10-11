@@ -26,9 +26,11 @@ export class InfrastructureComponent implements OnInit, OnChanges {
     this.trackGroupService.getAll().subscribe((res) => {
       this.trackGroups = res;
       for (let groups of this.trackGroups) {
-        for (let track of groups.tracks) {
-          if (track.positiveDirection === true) {
-            this.tracks.push(track);
+        if (groups.tracks) {
+          for (let track of groups.tracks) {
+            if (track.positiveDirection === true) {
+              this.tracks.push(track);
+            }
           }
         }
       }
