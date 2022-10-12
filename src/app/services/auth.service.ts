@@ -25,8 +25,8 @@ export class AuthService {
   }
 
   signup(user: User): Observable<any> {
-    return this.http.post(`${AUTH_URL}/sign-on`, {
-      user
-    }, HTTP_OPTIONS);
+    return this.http.post(`${AUTH_URL}/sign-up`, user,
+      {responseType: 'text'}
+    );
   }
 }

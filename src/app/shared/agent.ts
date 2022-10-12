@@ -1,12 +1,12 @@
 import {Measure} from "./measure";
 
 export interface Agent {
-    id?: string;
-    email?: string;
-    firstName?: string;
-    lastName?: string;
-    initials?: string;
-    phone?: string;
-    fax?: string;
+    id?: String;
+    email?: String;
+    firstName?: String;
+    lastName?: String;
+    initials?: String;
+    phone?: String;
+    fax?: String;
     measures?: Measure[];
 }

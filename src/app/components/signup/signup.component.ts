@@ -48,14 +48,25 @@ export class SignupComponent implements OnInit {
     let checkedLastName = this.checkLastName(formValue);
     let checkedInitials = this.checkedInitials(formValue);
     let signUpUser: User = {
-      ...formValue
+      ...formValue,
     }
+    signUpUser.firstName = checkedFirstName;
+    signUpUser.lastName = checkedLastName;
+    signUpUser.initials = checkedInitials;
+    console.log(formValue);
+    console.log(signUpUser)
+    this.authService.signup(signUpUser).subscribe(
+      (res) => {
+        window.alert("Benutzer erfolgreich erstellt!")
+        this.router.navigate(["login"])
+      }
+    )
   }
 
   checkFirstName(user: User): String {
     let checkedFirstName : String = '';
     if (user.firstName === '' || user.firstName == null) {
-        checkedFirstName = user.email.substring(0, user.email.lastIndexOf("."))
+        checkedFirstName = user.email.substring(0, user.email.indexOf("."));
     } else {
       checkedFirstName = user.firstName;
     }
@@ -64,13 +75,19 @@ export class SignupComponent implements OnInit {
 
   checkLastName(user: User): String {
     let checkedLastName: String = '';
-
+    if (user.lastName === '' || user.lastName == null) {
+      checkedLastName = user.email.substring(user.email.indexOf(".")+1 ,user.email.indexOf("@"));
+    } else {
+      checkedLastName = user.lastName;
+    }
     return checkedLastName;
   }
 
   checkedInitials(user: User): String {
     let checkedInitials: String = '';
-
+    if (user.initials === '' || user.initials == null) {
+      checkedInitials = user.email.charAt(0).toUpperCase() + user.email.charAt(user.email.indexOf(".")+1).toUpperCase()
+    }
     return checkedInitials;
   }
 }

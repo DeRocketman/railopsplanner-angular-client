@@ -39,7 +39,7 @@ export class LoginComponent implements OnInit {
 
   loginUser() {
     let email = this.signinForm?.get("email")?.value;
-    let pw = this.signinForm?.get("pw")?.value;
+    let pw = this.signinForm?.get("password")?.value;
     this.authService.signin(email, pw).subscribe((res) => {
       this.tokenService.saveToken(res);
       this.router.navigate(['home']);

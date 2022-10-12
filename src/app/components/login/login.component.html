@@ -17,14 +17,14 @@
         </mat-form-field>
         <mat-form-field appearance="outline">
           <mat-label>Passwort</mat-label>
-          <input matInput [type]="pwHide ? 'password' : 'text'" formControlName="pw" [errorStateMatcher]="matcher">
+          <input matInput [type]="pwHide ? 'password' : 'text'" formControlName="password" [errorStateMatcher]="matcher">
           <button mat-icon-button matSuffix (click)="pwHide = !pwHide" [attr.aria-label]="'Passwort verbergen'" [attr.aria-pressed]="pwHide">
             <mat-icon>{{pwHide ? 'visibility_off' : 'visibility'}}</mat-icon>
           </button>
-          <mat-error *ngIf="signinForm.get('pw').hasError('password') && !signinForm.get('pw').hasError('required')">
+          <mat-error *ngIf="signinForm.get('password').hasError('password') && !signinForm.get('password').hasError('required')">
             Bitte korrektes Passwort eingeben
           </mat-error>
-          <mat-error *ngIf="signinForm.get('pw').hasError('required')">
+          <mat-error *ngIf="signinForm.get('password').hasError('required')">
             Passwort ist <strong>notwendig</strong>
           </mat-error>
         </mat-form-field>

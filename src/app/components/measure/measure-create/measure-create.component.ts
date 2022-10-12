@@ -2,7 +2,6 @@ import { Component, OnInit } from '@angular/core';
 import {MeasureService} from "../../../services/measure.service";
 import {ActivatedRoute, Router} from "@angular/router";
 import {Measure, MeasureReason, ScheduleDeviation} from "../../../shared/measure";
-import {RailNetworkService} from "../../../services/rail-network.service";
 import {AgentService} from "../../../services/agent.service";
 import {Agent} from "../../../shared/agent";
 
@@ -25,19 +24,6 @@ export class MeasureCreateComponent implements OnInit {
   }
 
   createMeasure(measure: Measure): void {
-    /**
-    for (let agent of measure.agents) {
-      for (let storedAgent of this.storedAgents) {
-        if (agent.id === storedAgent.id || agent.email.toLowerCase() === storedAgent.email) {
-          agent = storedAgent
-        }
-      }
-      if (agent.id == null || agent.id == '') {
-        this.agentService.create(agent).subscribe((res)=> agent = res);
-      }
-    }
-     **/
-
     this.measureService.create(measure).subscribe((res) => {
       console.log(res)
       this.router.navigate(["measure-plan"])
