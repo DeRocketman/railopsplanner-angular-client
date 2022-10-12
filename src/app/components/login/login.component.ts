@@ -30,7 +30,7 @@ export class LoginComponent implements OnInit {
   ) {
     this.signinForm = this.fb.group({
       email: new FormControl('', [Validators.required, Validators.email]),
-      pw: new FormControl('',[Validators.required])
+      password: new FormControl('',[Validators.required])
     });
   }
 

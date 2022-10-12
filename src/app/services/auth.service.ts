@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import {HttpClient, HttpHeaders} from "@angular/common/http";
 import {Observable} from "rxjs";
+import {User} from "../shared/user";
 
 const AUTH_URL =  'http://localhost:8080/auth'
 const HTTP_OPTIONS : Object = {
@@ -23,10 +24,9 @@ export class AuthService {
       }, HTTP_OPTIONS);
   }
 
-  signup(email: string, password: string): Observable<any> {
+  signup(user: User): Observable<any> {
     return this.http.post(`${AUTH_URL}/sign-on`, {
-      email,
-      password
-    });
+      user
+    }, HTTP_OPTIONS);
   }
 }

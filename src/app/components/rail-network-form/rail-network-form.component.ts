@@ -59,13 +59,11 @@ export class RailNetworkFormComponent implements OnInit {
   }
 
   submitRailNetwork(value: RailNetwork): void {
-    console.log(value);
     let railNetworkToUpdate: RailNetwork = {
       ...value,
       id: this.railNetwork.id,
       trackGroups: [],
     }
-    console.log(railNetworkToUpdate.id)
     for (let tGroupId of value.trackGroups) {
       for (let selTrackGroup of this.availableTrackGroups) {
         if (tGroupId == selTrackGroup.id) {

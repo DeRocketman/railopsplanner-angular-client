@@ -313,7 +313,7 @@ export class MeasureFormComponent implements OnInit, OnChanges {
       }
 
       if (agents[i].lastName == null || agents[i].lastName == '') {
-        agents[i].lastName= agents[i].email.substring(agents[i].email.lastIndexOf("i")+1, agents[i].email.lastIndexOf("@"))
+        agents[i].lastName= agents[i].email.substring(agents[i].email.lastIndexOf(".")+1, agents[i].email.lastIndexOf("@"))
       }
 
       if (agents[i].initials == null || agents[i].initials == '') {
