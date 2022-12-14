@@ -41,7 +41,7 @@ const routes: Routes = [
   { path: 'statistic', component: StatisticComponent, canActivate:[AuthGuard] },
   { path: 'infrastructure', component: InfrastructureComponent, canActivate:[AuthGuard] },
   { path: 'infrastructure/create/track', component: TrackCreateComponent, canActivate:[AuthGuard] },
-  { path: 'infrastructure/create/station', component: StationCreateComponent, canActivate:[AuthGuard] },
+  { path: 'infrastructure/create/station', component: StationCreateComponent, canActivate:[AuthGuard]},
   { path: 'time-table-year', component: TimeTableYearListComponent, canActivate:[AuthGuard]},
   { path: 'time-table-year/create', component: TimeTableYearCreateComponent, canActivate:[AuthGuard]},
   { path: 'time-table-year/edit/:id', component: TimeTableYearEditComponent, canActivate:[AuthGuard]},
