@@ -124,7 +124,6 @@ export class MeasureFormComponent implements OnInit, OnChanges {
       this.measureFormGroup.patchValue(measureToLoad);
     }
   }
-
   private createClerkControl(): FormGroup {
     return new FormGroup({
       id: new FormControl(''),
@@ -133,7 +132,6 @@ export class MeasureFormComponent implements OnInit, OnChanges {
       lastName: new FormControl(''),
     })
   }
-
   private createAgentsControl(): FormGroup {
     return new FormGroup({
       id: new FormControl(''),
@@ -145,7 +143,6 @@ export class MeasureFormComponent implements OnInit, OnChanges {
       fax: new FormControl(''),
     })
   }
-
   private createTrainFailureControl(): FormGroup {
     return new FormGroup({
       trafficDay: new FormControl(new Date().toISOString().slice(0,10)),
